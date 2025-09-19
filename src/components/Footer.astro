@@ -1,0 +1,111 @@
+---
+// Contenido del frontmatter (opcional)
+---
+
+<footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>CompaniesAll</h3>
+          <p>Soluciones tecnológicas para impulsar tu empresa hacia el futuro.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="/servicios/desarrollo-web">Desarrollo Web</a></li>
+            <li><a href="/servicios/mantenimiento-sistemas">Mantenimiento de Sistemas</a></li>
+            <li><a href="/servicios/ciberseguridad">Ciberseguridad</a></li>
+            <li><a href="/servicios/cloud-computing">Cloud Computing</a></li>
+            <li><a href="/servicios/inteligencia-artificial">Inteligencia Artificial</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Industrias</h4>
+          <ul class="footer-links">
+            <li><a href="/soluciones/sector-salud">Sector Salud</a></li>
+            <li><a href="/soluciones/pymes-industriales">Pymes Industriales</a></li>
+            <li><a href="/soluciones/sector-financiero">Sector Financiero</a></li>
+            <li><a href="/soluciones/retail">Retail</a></li>
+            <li><a href="/soluciones/educacion">Educación</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <ul class="footer-links">
+            <li>Email: info@companiesall.com</li>
+            <li>Teléfono: +1 (555) 123-4567</li>
+            <li>Dirección: Av. Tecnológica 123, Ciudad Digital</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2023 CompaniesAll. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <style>
+    .footer {
+      background-color: var(--darker);
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-section h3 {
+      font-size: 1.5rem;
+    }
+    
+    .footer-section p {
+      color: var(--gray);
+      margin-bottom: 0;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a,
+    .footer-links li {
+      color: var(--gray);
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gray);
+    }
+    
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>

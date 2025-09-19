@@ -1,0 +1,319 @@
+---
+// components/Nosotros.astro
+---
+
+<section id="nosotros" class="nosotros-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Sobre Nosotros</h2>
+      <p class="section-subtitle">Conoce más sobre CompaniesAll y nuestra visión</p>
+    </div>
+
+    <div class="nosotros-content">
+      <div class="nosotros-intro">
+        <h3>Nuestra Historia</h3>
+        <p>CompaniesAll nació con la misión de transformar digitalmente a las empresas, proporcionando soluciones tecnológicas innovadoras que impulsen su crecimiento y competitividad en el mercado.</p>
+        <p>Con años de experiencia en el sector, hemos ayudado a decenas de empresas a optimizar sus procesos, mejorar su presencia digital y aprovechar las ventajas de la tecnología más avanzada.</p>
+      </div>
+
+      <div class="vision-mision">
+        <div class="vm-card">
+          <div class="vm-icon">🎯</div>
+          <h3>Misión</h3>
+          <p>Proporcionar soluciones tecnológicas de vanguardia que empoderen a las empresas para alcanzar su máximo potencial, optimizando procesos y generando valor real.</p>
+        </div>
+        
+        <div class="vm-card">
+          <div class="vm-icon">🔭</div>
+          <h3>Visión</h3>
+          <p>Ser el partner tecnológico de referencia para empresas que buscan transformarse digitalmente, reconocidos por nuestra innovación, calidad y compromiso con el éxito de nuestros clientes.</p>
+        </div>
+      </div>
+
+      <div class="foda-section">
+        <h3>Análisis FODA</h3>
+        <div class="foda-grid">
+          <div class="foda-card foda-fortalezas">
+            <h4>Fortalezas</h4>
+            <ul>
+              <li>Equipo altamente especializado</li>
+              <li>Tecnologías de vanguardia</li>
+              <li>Metodologías ágiles probadas</li>
+              <li>Enfoque personalizado para cada cliente</li>
+            </ul>
+          </div>
+          
+          <div class="foda-card foda-oportunidades">
+            <h4>Oportunidades</h4>
+            <ul>
+              <li>Crecimiento del mercado de transformación digital</li>
+              <li>Expansión a nuevas industrias</li>
+              <li>Alianzas estratégicas con empresas tecnológicas</li>
+              <li>Desarrollo de soluciones SaaS propietarias</li>
+            </ul>
+          </div>
+          
+          <div class="foda-card foda-debilidades">
+            <h4>Debilidades</h4>
+            <ul>
+              <li>Dependencia de talento especializado</li>
+              <li>Alto nivel de competencia en el sector</li>
+              <li>Inversión constante en actualización tecnológica</li>
+            </ul>
+          </div>
+          
+          <div class="foda-card foda-amenazas">
+            <h4>Amenazas</h4>
+            <ul>
+              <li>Aparición de nuevos competidores</li>
+              <li>Cambios rápidos en las tecnologías emergentes</li>
+              <li>Fluctuaciones económicas que afectan la inversión en TI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="valores-section">
+        <h3>Nuestros Valores</h3>
+        <div class="valores-grid">
+          <div class="valor-item">
+            <div class="valor-icon">💡</div>
+            <h4>Innovación</h4>
+            <p>Buscamos constantemente nuevas formas de resolver problemas y mejorar soluciones.</p>
+          </div>
+          
+          <div class="valor-item">
+            <div class="valor-icon">🤝</div>
+            <h4>Compromiso</h4>
+            <p>Nos involucramos profundamente con el éxito de cada proyecto y cliente.</p>
+          </div>
+          
+          <div class="valor-item">
+            <div class="valor-icon">⚡</div>
+            <h4>Eficiencia</h4>
+            <p>Optimizamos recursos y procesos para maximizar resultados.</p>
+          </div>
+          
+          <div class="valor-item">
+            <div class="valor-icon">🔒</div>
+            <h4>Transparencia</h4>
+            <p>Mantenemos una comunicación clara y honesta en todos nuestros procesos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nosotros-section {
+    padding: 5rem 0;
+    background-color: var(--light);
+  }
+  
+  .nosotros-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+  
+  .nosotros-intro h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+  }
+  
+  .nosotros-intro p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: var(--gray);
+  }
+  
+  .vision-mision {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .vm-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .vm-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .vm-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .vm-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .vm-card p {
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  
+  .foda-section {
+    margin-bottom: 4rem;
+  }
+  
+  .foda-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--dark);
+  }
+  
+  .foda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .foda-card {
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .foda-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid;
+  }
+  
+  .foda-card ul {
+    list-style-type: none;
+  }
+  
+  .foda-card li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .foda-card li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+  
+  .foda-fortalezas {
+    background-color: #f0f9ff;
+    border-top: 4px solid #3b82f6;
+  }
+  
+  .foda-fortalezas h4 {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+  }
+  
+  .foda-oportunidades {
+    background-color: #f0fdf4;
+    border-top: 4px solid #22c55e;
+  }
+  
+  .foda-oportunidades h4 {
+    color: #22c55e;
+    border-bottom-color: #22c55e;
+  }
+  
+  .foda-debilidades {
+    background-color: #fef2f2;
+    border-top: 4px solid #ef4444;
+  }
+  
+  .foda-debilidades h4 {
+    color: #ef4444;
+    border-bottom-color: #ef4444;
+  }
+  
+  .foda-amenazas {
+    background-color: #fffbeb;
+    border-top: 4px solid #f59e0b;
+  }
+  
+  .foda-amenazas h4 {
+    color: #f59e0b;
+    border-bottom-color: #f59e0b;
+  }
+  
+  .valores-section {
+    margin-top: 4rem;
+  }
+  
+  .valores-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--dark);
+  }
+  
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .valor-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .valor-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .valor-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .valor-item h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  .valor-item p {
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .nosotros-section {
+      padding: 3rem 0;
+    }
+    
+    .vision-mision,
+    .foda-grid,
+    .valores-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .vm-card,
+    .foda-card,
+    .valor-item {
+      padding: 1.5rem;
+    }
+  }
+</style>

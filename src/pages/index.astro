@@ -1,16 +1,109 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
+import Hero from "../components/Hero.astro";
+import IndustriesSection from "../components/IndustriesSection.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+import About from "../components/About.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout
+  title="CompaniesAll - Desarrollo y Mantenimiento de Sistemas"
+  description="Expertos en desarrollo y mantenimiento de sistemas para múltiples industrias. Soluciones tecnológicas a medida para tu empresa."
+>
+  <Hero
+    title="Soluciones Tecnológicas para Impulsar tu Empresa"
+    subtitle="Desarrollo y mantenimiento de sistemas a medida para múltiples industrias. Optimizamos tus procesos con tecnología de vanguardia."
+    primaryButton="Nuestros Servicios"
+    primaryLink="/servicios"
+    secondaryButton="Soluciones por Industria"
+    secondaryLink="/soluciones"
+  />
+  <About />
+
+  <section id="servicios" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <p class="section-subtitle">
+          Soluciones tecnológicas integrales para potenciar tu negocio
+        </p>
+      </div>
+      <ServicesGrid />
+    </div>
+  </section>
+
+  <!-- Sección Nosotros agregada aquí -->
+
+  <!-- <section id="industrias" class="section industries-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Soluciones para tu Industria</h2>
+        <p class="section-subtitle">Experiencia especializada en diversos sectores empresariales</p>
+      </div>
+      <IndustriesSection />
+    </div>
+  </section> -->
+
+  <section id="contacto" class="section cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Listo para transformar tu negocio?</h2>
+        <p>
+          Contáctanos hoy mismo para una consultoría gratuita y personalizada
+        </p>
+        <a href="#formulario-contacto" class="btn btn-primary btn-large"
+          >Solicitar Consultoría</a
+        >
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .industries-section {
+    background-color: var(--light);
+  }
+
+  .cta-section {
+    background: linear-gradient(
+      135deg,
+      var(--primary) 0%,
+      var(--secondary) 100%
+    );
+    color: white;
+    text-align: center;
+  }
+
+  .cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+</style>

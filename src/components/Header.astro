@@ -1,0 +1,277 @@
+---
+// Header.astro
+const { 
+  title = "Título por defecto", 
+  subtitle = "Subtítulo por defecto", 
+  primaryButton = "Botón principal", 
+  primaryLink = "#", 
+  secondaryButton = "Botón secundario", 
+  secondaryLink = "#" 
+} = Astro.props;
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="logo">TuMarca</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#industrias" class="nav-link">Industrias</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+
+
+<style>
+  /* Variables CSS para mantener consistencia */
+  :root {
+    --primary: #0066ff;
+    --primary-dark: #0052cc;
+    --secondary: #8c54ff;
+    --accent: #00c2ff;
+    --dark: #1a1a1a;
+    --darker: #0d0d0d;
+    --light: #f5f5f7;
+    --lighter: #ffffff;
+    --gray: #86868b;
+    --transition: all 0.3s ease;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+    --radius: 12px;
+    --max-width: 1200px;
+  }
+
+  /* Header y navegación - MEJORADO */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+
+  .header.scrolled {
+    padding: 0.75rem 0;
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: var(--dark);
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: var(--transition);
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus::after {
+    width: 100%;
+  }
+
+  .nav-link:hover {
+    color: var(--primary);
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark);
+    margin: 2px 0;
+    transition: var(--transition);
+    border-radius: 2px;
+  }
+
+  /* Hero section - MEJORADO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+    background: linear-gradient(135deg, rgba(245, 245, 247, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 50%;
+    height: 120%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    opacity: 0.03;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 15s linear infinite;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+    75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      flex-direction: column;
+      background-color: white;
+      width: 80%;
+      height: 100vh;
+      box-shadow: var(--shadow-hover);
+      padding: 2rem;
+      transition: var(--transition);
+      gap: 1.5rem;
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+    }
+    
+    .hero {
+      padding-top: 7rem;
+    }
+  }
+</style>
+
+<script>
+  // Script para el menú móvil y efecto de scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    // Verificar que los elementos existen antes de manipularlos
+    const header = document.querySelector('.header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    // Si los elementos no existen, salir temprano
+    if (!header || !menuToggle || !navMenu) return;
+    
+    // Efecto de scroll en el header
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Toggle del menú móvil
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+  });
+</script>

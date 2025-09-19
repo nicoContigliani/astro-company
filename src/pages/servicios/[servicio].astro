@@ -1,0 +1,677 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { servicio: 'desarrollo-web' } },
+    { params: { servicio: 'mantenimiento-sistemas' } },
+    { params: { servicio: 'ciberseguridad' } },
+    { params: { servicio: 'cloud-computing' } },
+    { params: { servicio: 'inteligencia-artificial' } },
+  ];
+}
+
+const servicioData = {
+  'desarrollo-web': {
+    title: 'Desarrollo Web | CompaniesAll',
+    h1: 'Desarrollo Web a Medida',
+    description: 'Creamos aplicaciones web modernas, escalables y de alto rendimiento para impulsar tu negocio.',
+    problema: 'En la era digital, una presencia web deficiente o desactualizada puede significar perder oportunidades de negocio frente a la competencia. Muchas empresas carecen de plataformas web que realmente representen su valor y faciliten la conversión de clientes.',
+    solucion: 'En CompaniesAll desarrollamos soluciones web personalizadas que no solo son visualmente atractivas, sino también funcionales, intuitivas y optimizadas para SEO. Utilizamos tecnologías de vanguardia para crear experiencias digitales que convierten visitantes en clientes.',
+    beneficios: [
+      'Diseño responsive que se adapta perfectamente a todos los dispositivos',
+      'Optimización para motores de búsqueda (SEO) integrada',
+      'Mayor velocidad de carga y mejor experiencia de usuario',
+      'Escalabilidad para adaptarse al crecimiento de tu empresa',
+      'Integración con tus sistemas existentes y APIs'
+    ],
+    casosExito: [
+      {
+        cliente: 'FinTech Solutions',
+        resultado: 'Aumento del 40% en conversiones tras rediseño de plataforma'
+      },
+      {
+        cliente: 'EduTech Global',
+        resultado: 'Sistema de gestión de aprendizaje con 50,000 usuarios activos'
+      }
+    ],
+    proceso: [
+      'Consulta y análisis de requerimientos',
+      'Diseño de prototipos y UX/UI',
+      'Desarrollo ágil con entregas incrementales',
+      'Pruebas de calidad y rendimiento',
+      'Despliegue y soporte continuo'
+    ]
+  },
+  'mantenimiento-sistemas': {
+    title: 'Mantenimiento de Sistemas | CompaniesAll',
+    h1: 'Mantenimiento Profesional de Sistemas',
+    description: 'Mantenimiento preventivo y correctivo para garantizar la continuidad operativa de tus sistemas.',
+    problema: 'Los fallos inesperados en los sistemas IT pueden detener operaciones completas, generar pérdidas económicas y dañar la reputación de tu empresa. El mantenimiento reactivo suele ser más costoso y disruptivo que un enfoque proactivo.',
+    solucion: 'Ofrecemos planes de mantenimiento personalizados que previenen problemas antes de que ocurran. Nuestro enfoque proactivo incluye monitorización 24/7, actualizaciones regulares y respaldo especializado inmediato cuando más lo necesitas.',
+    beneficios: [
+      'Reducción del 70% en tiempos de inactividad no planificados',
+      'Mayor vida útil de tu infraestructura tecnológica',
+      'Ahorro en costos de reparaciones de emergencia',
+      'Cumplimiento de normativas y estándares de seguridad',
+      'Planificación predictiva basada en datos reales'
+    ],
+    casosExito: [
+      {
+        cliente: 'Cadena Hotelera LuxStay',
+        resultado: '99.9% de uptime en sistemas de reservas y check-in'
+      },
+      {
+        cliente: 'Manufacturas Industriales S.A.',
+        resultado: 'Reducción de 60% en incidencias críticas tras implementación'
+      }
+    ],
+    proceso: [
+      'Auditoría completa de sistemas existentes',
+      'Diseño de plan de mantenimiento personalizado',
+      'Implementación de herramientas de monitorización',
+      'Mantenimiento preventivo programado',
+      'Soporte correctivo inmediato y reporting continuo'
+    ]
+  },
+  'ciberseguridad': {
+    title: 'Ciberseguridad | CompaniesAll',
+    h1: 'Protección Cibernética Integral',
+    description: 'Soluciones avanzadas de ciberseguridad para proteger tus activos digitales y datos sensibles.',
+    problema: 'Las amenazas cibernéticas evolucionan constantemente, poniendo en riesgo información confidencial, finanzas y la continuidad del negocio. Un solo incidente de seguridad puede costar millones y dañar irreversiblemente la confianza de tus clientes.',
+    solucion: 'Desarrollamos estrategias de ciberseguridad multicapa adaptadas a tus necesidades específicas. Combinamos tecnología de punta con expertise humano para crear defensas robustas que protegen contra amenazas conocidas y emergentes.',
+    beneficios: [
+      'Protección contra ransomware, phishing y ataques DDoS',
+      'Cumplimiento normativo (GDPR, ISO 27001, etc.)',
+      'Detección temprana de vulnerabilidades y amenazas',
+      'Respaldo y recuperación ante desastres',
+      'Capacitación para empleados en concienciación security'
+    ],
+    casosExito: [
+      {
+        cliente: 'Banca Regional',
+        resultado: 'Prevención del 100% de intrusiones tras implementación'
+      },
+      {
+        cliente: 'StartUp HealthTech',
+        resultado: 'Certificación ISO 27001 obtenida en tiempo récord'
+      }
+    ],
+    proceso: [
+      'Evaluación de riesgos y testeos de penetración',
+      'Diseño de arquitectura security-by-design',
+      'Implementación de soluciones de seguridad',
+      'Monitorización continua 24/7/365',
+      'Simulacros de incidentes y mejora continua'
+    ]
+  },
+  'cloud-computing': {
+    title: 'Cloud Computing | CompaniesAll',
+    h1: 'Transformación Digital en la Nube',
+    description: 'Soluciones cloud escalables y flexibles para optimizar costos y potenciar tu negocio.',
+    problema: 'La infraestructura IT tradicional suele ser rígida, costosa de mantener y difícil de escalar según demanda. Esto limita la agilidad empresarial y genera gastos operativos innecesarios.',
+    solucion: 'Implementamos estrategias de cloud computing adaptadas a tus objetivos de negocio. Migramos, optimizamos y gestionamos tus cargas de trabajo en la nube para maximizar eficiencia, reducir costos y permitir escalabilidad bajo demanda.',
+    beneficios: [
+      'Hasta 40% de ahorro en costos de infraestructura IT',
+      'Escalabilidad inmediata según necesidades variables',
+      'Alta disponibilidad y redundancia automática',
+      'Acceso seguro desde cualquier ubicación',
+      'Implementación de modelos híbridos y multi-nube'
+    ],
+    casosExito: [
+      {
+        cliente: 'E-commerce FashionHub',
+        resultado: 'Manejo de tráfico 10x superior en temporada alta sin interrupciones'
+      },
+      {
+        cliente: 'Medios Digitales Global',
+        resultado: 'Reducción de 35% en costos IT tras migración cloud'
+      }
+    ],
+    proceso: [
+      'Análisis de arquitectura y costos actuales',
+      'Plan de migración cloud personalizado',
+      'Implementación faseada con mínimo disruption',
+      'Optimización continua de rendimiento y costos',
+      'Gobernanza y management cloud continuo'
+    ]
+  },
+  'inteligencia-artificial': {
+    title: 'Inteligencia Artificial | CompaniesAll',
+    h1: 'Soluciones de Inteligencia Artificial',
+    description: 'Implementamos IA para automatizar procesos, obtener insights y crear ventajas competitivas.',
+    problema: 'Las empresas generan grandes volúmenes de datos que no son aprovechados para la toma de decisiones. Los procesos manuales repetitivos consumen recursos valiosos y limitan la capacidad de innovación.',
+    solucion: 'Desarrollamos soluciones de inteligencia artificial prácticas y escalables que transforman tus datos en ventajas competitivas. Desde chatbots inteligentes hasta sistemas predictivos avanzados, creamos herramientas que aprenden y mejoran continuamente.',
+    beneficios: [
+      'Automatización de procesos repetitivos y manuales',
+      'Análisis predictivo para mejor toma de decisiones',
+      'Personalización de experiencias para clientes',
+      'Detección de patrones y anomalías en tiempo real',
+      'Reducción de errores humanos y optimización de recursos'
+    ],
+    casosExito: [
+      {
+        cliente: 'Retail Chain Nacional',
+        resultado: 'Aumento del 22% en ventas cruzadas con sistema de recomendación IA'
+      },
+      {
+        cliente: 'Logística Express',
+        resultado: 'Optimización de rutas que redujo 18% costos de combustible'
+      }
+    ],
+    proceso: [
+      'Identificación de oportunidades de aplicación IA',
+      'Recopilación y preparación de datos',
+      'Desarrollo y entrenamiento de modelos',
+      'Implementación e integración con sistemas existentes',
+      'Monitorización, ajuste y mejora continua'
+    ]
+  },
+};
+
+const { servicio } = Astro.params;
+
+// Verificación segura con TypeScript
+if (!servicio || !servicioData.hasOwnProperty(servicio)) {
+  return Response.redirect('/404', 404);
+}
+
+// Usar aserción de tipo después de la verificación
+const data = servicioData[servicio as keyof typeof servicioData];
+---
+
+<MainLayout title={data.title}>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>{data.h1}</h1>
+        <p class="lead">{data.description}</p>
+        <a href="#contacto" class="btn btn-primary">Solicitar Consultoría Gratuita</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-solution">
+    <div class="container">
+      <div class="section-header">
+        <h2>Transformamos Desafíos en Oportunidades</h2>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="card card-problem">
+            <div class="card-header">
+              <h3>El Desafío</h3>
+            </div>
+            <div class="card-body">
+              <p>{data.problema}</p>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card card-solution">
+            <div class="card-header">
+              <h3>Nuestra Solución</h3>
+            </div>
+            <div class="card-body">
+              <p>{data.solucion}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ventajas Competitivas</h2>
+        <p>Descubre cómo nuestro servicio puede transformar tu operación</p>
+      </div>
+      <div class="benefits-grid">
+        {data.beneficios.map((beneficio, index) => (
+          <div class="benefit-item">
+            <div class="benefit-icon">{index + 1}</div>
+            <h3>{beneficio}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nuestro Proceso</h2>
+        <p>Metodología probada para garantizar el éxito de tu proyecto</p>
+      </div>
+      <div class="process-steps">
+        {data.proceso.map((paso, index) => (
+          <div class="process-step">
+            <div class="step-number">{index + 1}</div>
+            <h3>{paso}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="success-cases">
+    <div class="container">
+      <div class="section-header">
+        <h2>Casos de Éxito</h2>
+        <p>Resultados tangibles que hemos entregado a nuestros clientes</p>
+      </div>
+      <div class="cases-grid">
+        {data.casosExito.map((caso) => (
+          <div class="case-card">
+            <h3>{caso.cliente}</h3>
+            <p>{caso.resultado}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Listo para impulsar tu negocio?</h2>
+        <p>Contacta con nuestros expertos para una consultoría gratuita y personalizada</p>
+        <a href="/contacto" class="btn btn-large">Solicitar Información</a>
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #4b5563;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --accent: #f59e0b;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --background: #ffffff;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background-color: var(--background);
+      font-size: 1.05rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 6rem 0;
+      text-align: center;
+    }
+    
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .lead {
+      font-size: 1.35rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2.25rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1.05rem;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background-color: white;
+      color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .btn-large {
+      padding: 1.125rem 2.75rem;
+      font-size: 1.15rem;
+    }
+    
+    /* Sections */
+    section {
+      padding: 5rem 0;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.75rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    
+    .section-header p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      height: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .card-header {
+      padding: 1.75rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .card-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .card-body {
+      padding: 1.75rem;
+    }
+    
+    .card-body p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+    
+    /* Columns */
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    /* Problem Solution Section */
+    .card-problem .card-header {
+      background: #fef2f2;
+      color: #991b1b;
+      border-bottom: 1px solid #fecaca;
+    }
+    
+    .card-solution .card-header {
+      background: #f0fdf4;
+      color: #166534;
+      border-bottom: 1px solid #bbf7d0;
+    }
+    
+    /* Benefits */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .benefit-item {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .benefit-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .benefit-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 0 auto 1.75rem;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    }
+    
+    .benefit-item h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    
+    /* Process */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    
+    .process-step {
+      text-align: center;
+      position: relative;
+      padding: 1.5rem;
+    }
+    
+    .process-step:not(:last-child):after {
+      content: "";
+      position: absolute;
+      top: 50px;
+      right: -5%;
+      width: 10%;
+      height: 3px;
+      background: var(--primary);
+      opacity: 0.4;
+    }
+    
+    .step-number {
+      width: 90px;
+      height: 90px;
+      border: 3px solid var(--primary);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 auto 1.75rem;
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .process-step h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    
+    /* Success Cases */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .case-card {
+      padding: 2.25rem;
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--primary);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .case-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .case-card h3 {
+      color: var(--primary);
+      margin-bottom: 1.25rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    
+    .case-card p {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, var(--dark) 0%, #334155 100%);
+      color: white;
+      text-align: center;
+      padding: 6rem 0;
+    }
+    
+    .cta-content h2 {
+      font-size: 2.75rem;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    
+    .cta-content p {
+      font-size: 1.35rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .process-step:not(:last-child):after {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding: 4rem 0;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .lead {
+        font-size: 1.2rem;
+      }
+      
+      section {
+        padding: 3.5rem 0;
+      }
+      
+      .section-header h2 {
+        font-size: 2.25rem;
+      }
+      
+      .section-header p {
+        font-size: 1.15rem;
+      }
+      
+      .columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .benefits-grid,
+      .cases-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-content h2 {
+        font-size: 2.25rem;
+      }
+      
+      .cta-content p {
+        font-size: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .card-header,
+      .card-body {
+        padding: 1.5rem;
+      }
+      
+      .benefit-item,
+      .case-card {
+        padding: 1.75rem;
+      }
+    }
+  </style>
+</MainLayout>

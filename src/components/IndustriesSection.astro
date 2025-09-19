@@ -1,0 +1,324 @@
+---
+import IndustryTabsClient from "./react/IndustryTabsEnhanced";
+
+// En tu página de Astro (por ejemplo: src/pages/index.astro)
+
+// const industries = [
+//   {
+//     name: "Sector Salud",
+//     description: "Soluciones tecnológicas para hospitales, clínicas y laboratorios. Historiales médicos electrónicos, gestión de citas y telemedicina.",
+//     challenges: ["Cumplimiento de normativas", "Seguridad de datos sensibles", "Interoperabilidad entre sistemas"],
+//     solutions: ["Sistemas HIPAA compliant", "Encriptación de datos", "APIs estandarizadas"],
+//     link: "/soluciones/sector-salud",
+//     icon: "🏥"
+//   },
+//   {
+//     name: "Pymes Industriales",
+//     description: "Automatización de procesos, gestión de inventario y análisis de datos para pequeñas y medianas empresas industriales.",
+//     challenges: ["Procesos manuales ineficientes", "Falta de visibilidad de datos", "Escalabilidad limitada"],
+//     solutions: ["Sistemas ERP personalizados", "Automatización de procesos", "Dashboards en tiempo real"],
+//     link: "/soluciones/pymes-industriales",
+//     icon: "🏭"
+//   },
+//   {
+//     name: "Sector Financiero",
+//     description: "Plataformas seguras para bancos, fintechs y empresas de servicios financieros. Cumplimiento normativo y prevención de fraudes.",
+//     challenges: ["Regulaciones estrictas", "Ciberseguridad avanzada", "Integración con sistemas legacy"],
+//     solutions: ["Soluciones KYC/AML", "Sistemas de detección de fraude", "APIs para integración bancaria"],
+//     link: "/soluciones/sector-financiero",
+//     icon: "💳"
+//   }
+// ];
+// Datos mejorados para las industrias
+const industries = [
+  {
+    name: "Sector Salud",
+    description:
+      "Soluciones tecnológicas integrales para hospitales, clínicas y laboratorios. Desarrollamos sistemas de historiales médicos electrónicos, plataformas de gestión de citas y soluciones de telemedicina que mejoran la experiencia del paciente y optimizan los procesos médicos.",
+    challenges: [
+      "Cumplimiento de normativas HIPAA y GDPR",
+      "Seguridad y confidencialidad de datos sensibles de pacientes",
+      "Interoperabilidad entre sistemas médicos heterogéneos",
+      "Gestión eficiente de citas y recursos médicos",
+      "Acceso remoto seguro a historiales médicos",
+    ],
+    solutions: [
+      "Sistemas EHR/EMR compatibles con HIPAA",
+      "Encriptación end-to-end de datos médicos",
+      "APIs estandarizadas HL7/FHIR para interoperabilidad",
+      "Plataformas de telemedicina con videoconferencia segura",
+      "Sistemas de gestión de citas inteligentes",
+    ],
+    technologies: [
+      "React.js para interfaces de usuario responsivas",
+      "Node.js con Express para backend escalable",
+      "Bases de datos PostgreSQL con cifrado AES-256",
+      "AWS HIPAA Eligible Services para infraestructura",
+      "Socket.io para comunicación en tiempo real",
+    ],
+    benefits: [
+      "Reducción del 40% en tiempo de gestión administrativa",
+      "Aumento del 30% en la satisfacción del paciente",
+      "Cumplimiento normativo garantizado",
+      "Acceso seguro a historiales desde cualquier dispositivo",
+      "Interoperabilidad con sistemas existentes",
+    ],
+    caseStudy:
+      "Implementamos un sistema de historiales médicos electrónicos para una red de clínicas que redujo el tiempo de acceso a información del paciente en un 60% y mejoró la coordinación entre especialistas.",
+    link: "/soluciones/sector-salud",
+    icon: "🏥",
+  },
+  {
+    name: "Pymes Industriales",
+    description:
+      "Soluciones de automatización, gestión de inventario y análisis de datos para pequeñas y medianas empresas industriales. Transformamos procesos manuales en sistemas digitales eficientes que impulsan la productividad y reducen costos operativos.",
+    challenges: [
+      "Procesos manuales ineficientes y propensos a errores",
+      "Falta de visibilidad en tiempo real de datos operativos",
+      "Dificultad para escalar operaciones",
+      "Gestión ineficiente de inventario y supply chain",
+      "Limitaciones en análisis predictivo y toma de decisiones",
+    ],
+    solutions: [
+      "Sistemas ERP personalizados para gestión integral",
+      "Plataformas de automatización de procesos industriales",
+      "Dashboards en tiempo real con métricas clave",
+      "Sistemas de gestión de inventario inteligente",
+      "Soluciones de análisis predictivo con IA",
+    ],
+    technologies: [
+      "Vue.js para dashboards interactivos",
+      "Python con Django para procesamiento de datos",
+      "React Native para aplicaciones móviles de campo",
+      "MQTT para IoT y dispositivos industriales",
+      "Power BI integrado para Business Intelligence",
+    ],
+    benefits: [
+      "Reducción de hasta 50% en procesos manuales",
+      "Aumento del 25% en eficiencia operativa",
+      "Visibilidad completa en tiempo real de operaciones",
+      "Reducción de 30% en costos de inventario",
+      "Escalabilidad garantizada para crecimiento futuro",
+    ],
+    caseStudy:
+      "Desarrollamos un sistema ERP personalizado para una fábrica de muebles que automatizó el 70% de sus procesos manuales y redujo un 35% los tiempos de producción.",
+    link: "/soluciones/pymes-industriales",
+    icon: "🏭",
+  },
+  {
+    name: "Sector Financiero",
+    description:
+      "Plataformas seguras y robustas para bancos, fintechs y empresas de servicios financieros. Desarrollamos soluciones que garantizan cumplimiento normativo, previenen fraudes y mejoran la experiencia digital de los usuarios financieros.",
+    challenges: [
+      "Cumplimiento de regulaciones financieras estrictas (KYC/AML)",
+      "Protección contra ciberamenazas y fraudes sofisticados",
+      "Integración con sistemas legacy y core bancario",
+      "Escalabilidad para manejar volúmenes transaccionales altos",
+      "Experiencia de usuario segura pero sin fricciones",
+    ],
+    solutions: [
+      "Soluciones KYC/AML con verificación de identidad digital",
+      "Sistemas de detección de fraude con machine learning",
+      "APIs para integración bancaria y sistemas legacy",
+      "Plataformas de banca digital y mobile banking",
+      "Sistemas de pagos y transacciones seguras",
+    ],
+    technologies: [
+      "Angular para aplicaciones enterprise seguras",
+      "Java Spring Boot para backend transaccional",
+      "React Native para apps móviles bancarias",
+      "TensorFlow para modelos de detección de fraude",
+      "Kubernetes para escalabilidad automática",
+    ],
+    benefits: [
+      "Cumplimiento total con regulaciones financieras",
+      "Detección del 99.8% de transacciones fraudulentas",
+      "Integración seamless con sistemas existentes",
+      "Capacidad para manejar millones de transacciones diarias",
+      "Experiencia de usuario optimizada y segura",
+    ],
+    caseStudy:
+      "Creamos una plataforma de verificación KYC para un neobanco que redujo el tiempo de onboarding de clientes de 3 días a 15 minutos, cumpliendo con todas las regulaciones.",
+    link: "/soluciones/sector-financiero",
+    icon: "💳",
+  },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soluciones por Industria</title>
+  </head>
+  <body>
+    <div class="industries-container">
+      <h2 class="industries-title">Soluciones Especializadas por Industria</h2>
+      <p class="industries-subtitle">
+        Desarrollamos tecnología a medida para los desafíos específicos de cada
+        sector
+      </p>
+
+      <!-- Componente React para las pestañas interactivas -->
+      <IndustryTabsClient industries={industries} client:load />
+    </div>
+
+    <style>
+      :root {
+        --color-primary: #2563eb;
+        --color-primary-dark: #1d4ed8;
+        --color-text: #1f2937;
+        --color-text-secondary: #6b7280;
+        --color-bg-secondary: #f9fafb;
+      }
+
+      .industries-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      .industries-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-primary);
+      }
+
+      .industries-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        color: var(--color-text-secondary);
+      }
+
+      .industry-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .industry-tab {
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        background-color: var(--color-bg-secondary);
+        color: var(--color-text);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .industry-tab:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .industry-tab.active {
+        background-color: var(--color-primary);
+        color: white;
+        border-color: var(--color-primary-dark);
+      }
+
+      .industry-content {
+        background-color: var(--color-bg-secondary);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .industry-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .industry-icon {
+        font-size: 2rem;
+      }
+
+      .industry-challenges-solutions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .industry-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .industry-list li {
+        padding: 0.5rem 0;
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .industry-list li:before {
+        content: "•";
+        color: var(--color-primary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .industry-cta {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        background-color: var(--color-primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: var(--color-primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .industry-tabs {
+          flex-direction: column;
+        }
+
+        .industry-challenges-solutions {
+          grid-template-columns: 1fr;
+        }
+
+        .industries-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </body>
+</html>

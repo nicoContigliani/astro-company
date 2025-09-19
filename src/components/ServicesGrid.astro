@@ -1,0 +1,44 @@
+---
+const services = [
+{
+    title: "Desarrollo Web a Medida",
+    description: "Convertimos tus ideas en experiencias digitales. Creamos aplicaciones web modernas, rápidas y escalables, enfocadas en la usabilidad y la conexión con tus usuarios.",
+    icon: "💻",
+    link: "/servicios/desarrollo-web"
+  },
+  {
+    title: "Soporte y Gestión de Sistemas",
+    description: "Garantizamos la continuidad de tu operación. Nos anticipamos a los problemas y optimizamos tus sistemas con un mantenimiento proactivo y soporte experto para que siempre estén eficientes y seguros.",
+    icon: "🔧",
+    link: "/servicios/mantenimiento-sistemas"
+  },
+  {
+    title: "Arquitectura de Infraestructura",
+    description: "Diseñamos la base tecnológica para tu crecimiento. Construimos y optimizamos infraestructuras eficientes y seguras que te preparan para escalar y competir en el futuro.",
+    icon: "🏗️",
+    link: "/servicios/infraestructura-tecnologica"
+  },
+  {
+    title: "Asesoría en Transformación Digital",
+    description: "Te guiamos en la optimización de procesos y la adopción de tecnologías clave. Te ofrecemos una hoja de ruta clara para que tu negocio sea más eficiente, innovador y competitivo.",
+    icon: "📊",
+    link: "/servicios/consultoria-it"
+  },
+  {
+    title: "Capacitación y Cursos IT",
+    description: "Invertimos en tu equipo para potenciar tu negocio. Ofrecemos cursos y programas de capacitación personalizados en las últimas tecnologías para que tu talento se mantenga a la vanguardia.",
+    icon: "🎓",
+    link: "/servicios/capacitacion-it"
+  }
+];
+---
+
+<div class="services-grid">
+  {services.map((service, index) => (
+    <a href={service.link} class="service-card fade-in" style={`animation-delay: ${index * 0.1}s`}>
+      <div class="service-icon">{service.icon}</div>
+      <h3>{service.title}</h3>
+      <p>{service.description}</p>
+    </a>
+  ))}
+</div>
