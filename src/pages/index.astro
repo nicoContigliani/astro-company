@@ -5,6 +5,7 @@ import IndustriesSection from "../components/IndustriesSection.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import About from "../components/About.astro";
 import Contacto from "../components/react/Contacto";
+import MarcasCarousel from "../components/react/MarcasCarousel";
 ---
 
 <MainLayout
@@ -33,11 +34,17 @@ import Contacto from "../components/react/Contacto";
     </div>
   </section> -->
 
-  <section id="contacto" >
+  <section id="contacto">
     <Contacto client:load />
     <div class="container">
-      <div class="cta-content">
-      </div>
+      <div class="cta-content"></div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <MarcasCarousel client:only="react" />
+    <div class="container">
+      <div class="cta-content"></div>
     </div>
   </section>
 </MainLayout>
