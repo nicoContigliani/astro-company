@@ -1,292 +1,22 @@
-<!-- ---
-// Header.astro
-const { 
-  title = "Título por defecto", 
-  subtitle = "Subtítulo por defecto", 
-  primaryButton = "Botón principal", 
-  primaryLink = "#", 
-  secondaryButton = "Botón secundario", 
-  secondaryLink = "#" 
-} = Astro.props;
 ---
+// Definimos las propiedades que acepta el componente
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryButton: string;
+  primaryLink: string;
+  secondaryButton?: string;
+  secondaryLink?: string;
+}
 
-<header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a href="/" class="logo">TuMarca</a>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#industrias" class="nav-link">Industrias</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#contacto" class="nav-link">Contacto</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
-  </div>
-</header>
-
-
-
-<style>
-  /* Variables CSS para mantener consistencia */
-  :root {
-    --primary: #0066ff;
-    --primary-dark: #0052cc;
-    --secondary: #8c54ff;
-    --accent: #00c2ff;
-    --dark: #1a1a1a;
-    --darker: #0d0d0d;
-    --light: #f5f5f7;
-    --lighter: #ffffff;
-    --gray: #86868b;
-    --transition: all 0.3s ease;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
-    --radius: 12px;
-    --max-width: 1200px;
-  }
-
-  /* Header y navegación - MEJORADO */
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 1rem 0;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-  }
-
-  .header.scrolled {
-    padding: 0.75rem 0;
-    background-color: rgba(255, 255, 255, 0.98);
-  }
-
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--dark);
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    margin: 0;
-  }
-
-  .nav-link {
-    font-weight: 500;
-    color: var(--dark);
-    position: relative;
-    padding: 0.5rem 0;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    transition: var(--transition);
-  }
-
-  .nav-link:hover::after,
-  .nav-link:focus::after {
-    width: 100%;
-  }
-
-  .nav-link:hover {
-    color: var(--primary);
-  }
-
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-
-  .menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--dark);
-    margin: 2px 0;
-    transition: var(--transition);
-    border-radius: 2px;
-  }
-
-  /* Hero section - MEJORADO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 5rem;
-    background: linear-gradient(135deg, rgba(245, 245, 247, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 50%;
-    height: 120%;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    opacity: 0.03;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation: morph 15s linear infinite;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 600px;
-  }
-
-  .hero-content h1 {
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  /* Animaciones */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes morph {
-    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
-    75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
-    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.8s ease forwards;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: flex;
-    }
-
-    .nav-menu {
-      position: fixed;
-      top: 70px;
-      right: -100%;
-      flex-direction: column;
-      background-color: white;
-      width: 80%;
-      height: 100vh;
-      box-shadow: var(--shadow-hover);
-      padding: 2rem;
-      transition: var(--transition);
-      gap: 1.5rem;
-    }
-
-    .nav-menu.active {
-      right: 0;
-    }
-
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    .hero-buttons {
-      flex-direction: column;
-    }
-    
-    .hero {
-      padding-top: 7rem;
-    }
-  }
-</style>
-
-<script>
-  // Script para el menú móvil y efecto de scroll
-  document.addEventListener('DOMContentLoaded', () => {
-    // Verificar que los elementos existen antes de manipularlos
-    const header = document.querySelector('.header');
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-    
-    // Si los elementos no existen, salir temprano
-    if (!header || !menuToggle || !navMenu) return;
-    
-    // Efecto de scroll en el header
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-    
-    // Toggle del menú móvil
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-    
-    // Cerrar menú al hacer clic en un enlace
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
-  });
-</script> -->
-
-
-
----
-// Header.astro
-const { 
-  title = "Título por defecto", 
-  subtitle = "Subtítulo por defecto", 
-  primaryButton = "Botón principal", 
-  primaryLink = "#", 
-  secondaryButton = "Botón secundario", 
-  secondaryLink = "#" 
+// Extraemos las propiedades
+const {
+  title,
+  subtitle,
+  primaryButton,
+  primaryLink,
+  secondaryButton,
+  secondaryLink,
 } = Astro.props;
 ---
 
@@ -294,8 +24,12 @@ const {
   <div class="container">
     <nav class="nav">
       <a href="/" class="logo">
-        <span class="material-symbols-rounded logo-icon">code_blocks</span>
-        TuMarca
+        <img
+          src="/images/llakascript.png"
+          alt="LlakaScript Logo"
+          class="logo-image"
+        />
+        LlakaScript
       </a>
       <ul class="nav-menu" id="navMenu">
         <li>
@@ -304,7 +38,6 @@ const {
             Servicios
           </a>
         </li>
-   
         <li>
           <a href="#nosotros" class="nav-link">
             <span class="material-symbols-rounded nav-icon">group</span>
@@ -327,49 +60,50 @@ const {
   </div>
 </header>
 
-
 <style>
-  /* Importar la fuente de iconos de Google Fonts */
   @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-  /* Variables CSS para mantener consistencia */
   :root {
-    --primary-blue: #007aff;
-    --primary-blue-dark: #0056b3;
-    --bg-light: #f9fafb;
-    --text-dark: #1c1c1e;
-    --text-medium: #8e8e93;
+    /* Paleta de colores elegante y moderna */
+    --primary: #2e66ff; /* Azul profundo y llamativo */
+    --primary-dark: #1e45b3; /* Tono más oscuro para el hover */
+    --secondary: #00c4ff; /* Azul cielo para acentos */
+    --accent: #5effc4; /* Verde menta para acentos sutiles */
+    --dark: #2c2c2e; /* Gris oscuro para texto principal */
+    --text-medium: #8e8e93; /* Gris medio para enlaces y descripciones */
     --white: #ffffff;
-    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --bg-light: #f7f9fc; /* Blanco azulado muy suave */
+    --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.1);
     --radius: 12px;
-    --max-width: 1200px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --max-width: 1280px;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   body {
-    font-family: 'Inter', sans-serif; /* Asegúrate de importar la fuente Inter */
-    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
     background-color: var(--bg-light);
   }
 
-  /* Header y navegación */
+  /* --- Header y navegación --- */
   .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 1.5rem 0; /* Más espaciado para un look premium */
     transition: var(--transition);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .header.scrolled {
     padding: 0.75rem 0;
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-subtle);
   }
 
   .container {
@@ -385,31 +119,36 @@ const {
   }
 
   .logo {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--dark);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: var(--transition);
   }
   
-  .logo-icon {
-    font-size: 2rem;
-    color: var(--primary-blue);
+  .logo:hover {
+    color: var(--primary);
   }
 
+  .logo-image {
+    height: 2rem;
+    width: auto;
+  }
+  
   .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem; /* Más espacio entre los enlaces */
     margin: 0;
     padding: 0;
   }
 
   .nav-link {
     font-weight: 500;
-    color: var(--text-dark);
+    color: var(--text-medium);
     position: relative;
     padding: 0.5rem 0;
     text-decoration: none;
@@ -420,36 +159,36 @@ const {
   }
 
   .nav-icon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--text-medium);
     transition: var(--transition);
   }
 
   .nav-link:hover {
-    color: var(--primary-blue);
+    color: var(--primary);
   }
 
   .nav-link:hover .nav-icon {
-    color: var(--primary-blue);
+    color: var(--primary);
   }
 
-  /* Subrayado animado */
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
+    bottom: -5px; /* Más abajo para no chocar con el ícono */
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
-    height: 2px;
-    background-color: var(--primary-blue);
-    transition: var(--transition);
+    height: 3px;
+    background-color: var(--secondary);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .nav-link:hover::after {
     width: 100%;
   }
 
-  /* Menú de hamburguesa */
   .menu-toggle {
     display: none;
     flex-direction: column;
@@ -465,12 +204,11 @@ const {
   .bar {
     width: 100%;
     height: 2px;
-    background-color: var(--text-dark);
+    background-color: var(--dark);
     transition: var(--transition);
     border-radius: 2px;
   }
 
-  /* Estilos para el menú móvil */
   @media (max-width: 768px) {
     .menu-toggle {
       display: flex;
@@ -478,20 +216,20 @@ const {
 
     .nav-menu {
       position: fixed;
-      top: 70px;
+      top: 80px; /* Ajuste para el nuevo padding del header */
       right: -100%;
       flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      background-color: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       width: 80%;
-      max-width: 300px;
-      height: calc(100% - 70px);
+      max-width: 350px;
+      height: calc(100% - 80px);
       box-shadow: var(--shadow-medium);
-      padding: 2rem;
-      transition: var(--transition);
-      gap: 1.5rem;
-      border-radius: 12px 0 0 12px;
+      padding: 3rem 2rem;
+      transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 2rem;
+      border-radius: 16px 0 0 16px;
     }
 
     .nav-menu.active {
@@ -499,30 +237,34 @@ const {
     }
 
     .nav-link {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 600;
       padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     
+    .nav-link:last-child {
+      border-bottom: none;
+    }
+
     .nav-icon {
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
+    /* Animación del ícono de hamburguesa */
     .menu-toggle.active .bar:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: translateY(9px) rotate(45deg);
     }
-
     .menu-toggle.active .bar:nth-child(2) {
       opacity: 0;
     }
-
     .menu-toggle.active .bar:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: translateY(-9px) rotate(-45deg);
     }
   }
 </style>
 
 <script>
-  // Script para el menú móvil y efecto de scroll
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const menuToggle = document.getElementById('menuToggle');

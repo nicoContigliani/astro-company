@@ -1,33 +1,467 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 const title = "CompaniesAll - Desarrollo y Mantenimiento de Sistemas";
-const description = "Expertos en desarrollo y mantenimiento de sistemas para múltiples industrias. Soluciones tecnológicas a medida para tu empresa.";
+const description =
+  "Expertos en desarrollo y mantenimiento de sistemas para múltiples industrias. Soluciones tecnológicas a medida para tu empresa.";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary-color: #007bff;
+        --secondary-color: #0056b3;
+        --text-color: #5a6c7d;
+        --gradient-color-1: #2c3e50;
+        --gradient-color-2: #3498db;
+        --light-blue-1: rgba(0, 123, 255, 0.3);
+        --light-blue-2: rgba(100, 200, 255, 0.2);
+        --light-blue-3: rgba(0, 123, 255, 0.4);
+        --light-blue-4: rgba(100, 200, 255, 0.3);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Roboto', sans-serif;
+        background: #f0f4f8;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* --- Estilos para el Header Fijo --- */
+      .header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000; /* Asegura que esté sobre todo */
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      
+      /* Asegura que el contenido no quede oculto bajo el header */
+      .hero {
+        padding-top: 5rem; /* Ajusta según la altura de tu header */
+      }
+
+      /* --- Estilos generales del Hero --- */
+      .hero {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        background: linear-gradient(
+            135deg,
+            rgba(230, 240, 255, 1) 0%,
+            rgba(255, 255, 255, 0.628) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 800px;
+        width: 100%;
+        text-align: center;
+        padding: 3rem;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 30px;
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: contentFloat 6s ease-in-out infinite;
+      }
+      @keyframes contentFloat {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-10px) scale(1.01); }
+      }
+      .hero-content h1 {
+        font-family: "Poppins", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, var(--gradient-color-1) 0%, var(--gradient-color-2) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .hero-content p {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        color: var(--text-color);
+        margin-bottom: 2rem;
+        font-weight: 400;
+      }
+      .mb-3 {
+        margin-bottom: 1.5rem;
+      }
+      /* --- Estilos de los botones mejorados --- */
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .hero-buttons a {
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+      }
+      .primary-button {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: #fff;
+        border: none;
+      }
+      .primary-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.7s;
+      }
+      .primary-button:hover::before {
+        left: 100%;
+      }
+      .primary-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(0, 123, 255, 0.4);
+      }
+      .secondary-button {
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+        backdrop-filter: blur(10px);
+      }
+      .secondary-button:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(0, 123, 255, 0.3);
+      }
+      /* --- Efectos de partículas flotantes MEJORADOS --- */
+      .floating-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: float 15s infinite linear;
+        background: var(--light-blue-1);
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        90% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      /* --- Estilos de las ondas MEJORADOS --- */
+      .waves-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 200%;
+        height: 500px;
+        background: linear-gradient(90deg, 
+            var(--light-blue-1) 0%, 
+            var(--light-blue-2) 50%, 
+            var(--light-blue-1) 100%);
+        border-radius: 45% 47% 42% 54%;
+        animation: waveAnimation 25s infinite linear;
+        transform-origin: 50% 50%;
+      }
+      .wave.-one {
+        opacity: 0.8;
+        height: 520px;
+        animation: waveAnimation 30s infinite linear;
+        background: linear-gradient(90deg, 
+            var(--light-blue-3) 0%, 
+            var(--light-blue-4) 50%, 
+            var(--light-blue-3) 100%);
+      }
+      .wave.-two {
+        opacity: 0.6;
+        height: 480px;
+        animation: waveAnimation 35s infinite linear reverse;
+        border-radius: 42% 46% 44% 48%;
+        background: linear-gradient(90deg, 
+            rgba(70, 130, 255, 0.3) 0%, 
+            rgba(150, 200, 255, 0.2) 50%, 
+            rgba(70, 130, 255, 0.3) 100%);
+      }
+      .wave.-three {
+        opacity: 0.4;
+        height: 450px;
+        animation: waveAnimation 40s infinite linear;
+        border-radius: 48% 42% 46% 44%;
+        background: linear-gradient(90deg, 
+            rgba(120, 180, 255, 0.2) 0%, 
+            rgba(200, 220, 255, 0.1) 50%, 
+            rgba(120, 180, 255, 0.2) 100%);
+      }
+      @keyframes waveAnimation {
+        0% {
+          transform: translateX(-50%) rotate(0deg);
+        }
+        50% {
+          transform: translateX(-25%) rotate(180deg);
+        }
+        100% {
+          transform: translateX(-50%) rotate(360deg);
+        }
+      }
+      /* --- Efectos de iluminación --- */
+      .light-spot {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: lightMove 20s infinite alternate ease-in-out;
+        z-index: 0;
+      }
+      .light-spot:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .light-spot:nth-child(2) {
+        top: 60%;
+        right: 15%;
+        animation-delay: -5s;
+        width: 400px;
+        height: 400px;
+      }
+      @keyframes lightMove {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(100px, 50px) scale(1.2);
+        }
+      }
+      /* --- Efecto de gradiente animado en el fondo --- */
+      .gradient-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        opacity: 0.1;
+        z-index: 0;
+      }
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      /* --- Responsive --- */
+      @media (max-width: 768px) {
+        .hero {
+          padding: 1rem;
+        }
+        .hero-content {
+          padding: 2rem 1.5rem;
+          margin: 0;
+        }
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+        }
+        .hero-buttons a {
+          padding: 0.9rem 2rem;
+          font-size: 1rem;
+          width: 100%;
+          max-width: 280px;
+        }
+        .wave {
+          height: 300px;
+        }
+        .wave.-one {
+          height: 320px;
+        }
+        .wave.-two {
+          height: 280px;
+        }
+        .wave.-three {
+          height: 250px;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+        .hero-content p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+
   </head>
   <body>
-    <Header />
+    <div class="header-container">
+      <Header
+        title="Bienvenido a CompaniesAll"
+        subtitle="Soluciones tecnológicas para tu empresa"
+        primaryButton="Contactar"
+        primaryLink="#contacto"
+        secondaryButton="Servicios"
+        secondaryLink="#servicios"
+      />
+    </div>
+
+    <!-- <section class="hero">
+      <div class="gradient-bg"></div>
+      
+      <div class="light-spot"></div>
+      <div class="light-spot"></div>
+
+      <div class="waves-container">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+      </div>
+
+      <div class="floating-particles" id="particles"></div>
+
+      
+    </section> -->
+
     <main>
       <slot />
     </main>
     <Footer />
+    
+    <script>
+      // script para las partículas y el efecto de escritura del título
+      document.addEventListener('DOMContentLoaded', function() {
+        // Crear partículas flotantes
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+          const particleCount = 20;
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 15 + 5;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 15;
+            const duration = Math.random() * 10 + 15;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}%`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            const colors = [
+              'rgba(0, 123, 255, 0.4)',
+              'rgba(100, 200, 255, 0.3)',
+              'rgba(70, 130, 255, 0.4)',
+              'rgba(120, 180, 255, 0.3)'
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.background = randomColor;
+            particlesContainer.appendChild(particle);
+          }
+        }
+        
+        // Efecto de escritura para el título
+        const titleElement:any = document.querySelector('.hero-content h1');
+        if (titleElement) {
+          const originalText = titleElement.textContent;
+          titleElement.textContent = '';
+          let i = 0;
+          const typeWriter = () => {
+            if (i < originalText.length) {
+              titleElement.textContent += originalText.charAt(i);
+              i++;
+              setTimeout(typeWriter, 50);
+            }
+          };
+          setTimeout(typeWriter, 500);
+        }
+      });
+    </script>
   </body>
 </html>

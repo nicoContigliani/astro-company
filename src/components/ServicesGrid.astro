@@ -1,6 +1,17 @@
 ---
-const services = [
-{
+// components/ServicesGrid.astro
+import type { ReactNode } from 'react';
+import { useState } from 'react';
+
+interface Service {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  link: string;
+}
+
+const services: Service[] = [
+  {
     title: "Desarrollo Web a Medida",
     description: "Convertimos tus ideas en experiencias digitales. Creamos aplicaciones web modernas, rápidas y escalables, enfocadas en la usabilidad y la conexión con tus usuarios.",
     icon: "💻",
@@ -33,12 +44,163 @@ const services = [
 ];
 ---
 
-<div class="services-grid">
-  {services.map((service, index) => (
-    <a href={service.link} class="service-card fade-in" style={`animation-delay: ${index * 0.1}s`}>
-      <div class="service-icon">{service.icon}</div>
-      <h3>{service.title}</h3>
-      <p>{service.description}</p>
-    </a>
-  ))}
+<div class="services-container">
+  <div class="section-header">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-subtitle">Soluciones tecnológicas integrales para potenciar tu negocio</p>
+  </div>
+  
+  <div class="services-grid">
+    {services.map((service, index) => (
+      <a href={service.link} class="service-card fade-in" style={`animation-delay: ${index * 0.1}s`}>
+        <div class="service-icon">{service.icon}</div>
+        <h3>{service.title}</h3>
+        <p>{service.description}</p>
+        <span class="service-link">Descubrir más →</span>
+      </a>
+    ))}
+  </div>
 </div>
+
+<style>
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+    color: #8e8e93;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 122, 255, 0.1);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
+  }
+
+  .service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1c1c1e;
+  }
+
+  .service-card p {
+    color: #8e8e93;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    line-height: 1.6;
+  }
+
+  .service-link {
+    color: #007aff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .service-card:hover .service-link {
+    color: #0056b3;
+    transform: translateX(5px);
+  }
+
+  /* Animaciones */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 2.2rem;
+    }
+    
+    .services-container {
+      padding: 3rem 1rem;
+    }
+  }
+</style>
