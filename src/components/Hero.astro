@@ -1,3 +1,534 @@
+<!-- ---
+// Definimos las propiedades que acepta el componente
+interface Props {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+// Extraemos las propiedades
+const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro.props;
+---
+
+<section class="hero-section">
+  <div class="background-blobs">
+    <div class="blob blob-one"></div>
+    <div class="blob blob-two"></div>
+    <div class="blob blob-three"></div>
+    <div class="blob blob-four"></div>
+  </div>
+
+  <div class="hero-container">
+    <div class="hero-image-content">
+      <div class="image-frame" id="image-frame-3d">
+        <div class="outer-ring"></div>
+        <div class="middle-ring"></div>
+        <div class="inner-circle">
+          <img src={imageSrc} alt={imageAlt} class="hero-main-image" />
+        </div>
+      </div>
+    </div>
+    <div class="hero-text-content">
+      <h1 class="hero-title">{title}</h1>
+      <p class="hero-description">{description}</p>
+      <div class="hero-actions">
+        <a href={buttonLink} class="hero-button">
+          {buttonText}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Script para el efecto de seguir el puntero del mouse
+  document.addEventListener('DOMContentLoaded', () => {
+    const imageFrame = document.getElementById('image-frame-3d');
+    if (!imageFrame) return;
+
+    const heroImageContent = imageFrame.closest('.hero-image-content');
+    if (!heroImageContent) return;
+
+    const outerRing = imageFrame.querySelector('.outer-ring');
+    const middleRing = imageFrame.querySelector('.middle-ring');
+    const innerCircle = imageFrame.querySelector('.inner-circle');
+    const heroMainImage = imageFrame.querySelector('.hero-main-image');
+
+    // Verificar si es un dispositivo móvil
+    const isMobile = window.innerWidth <= 992;
+
+    if (!isMobile) {
+      heroImageContent.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = heroImageContent.getBoundingClientRect();
+
+        // Calcular la posición del ratón relativa al centro del contenedor de la imagen
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+
+        const deltaX = clientX - centerX;
+        const deltaY = clientY - centerY;
+
+        // Normalizar del -1 a 1 para mayor control de la intensidad
+        const rotateY = (deltaX / width) * 40;
+        const rotateX = (deltaY / height) * -40;
+
+        // Intensidad de movimiento para cada capa
+        const intensity = 0.5;
+
+        // Aplicar transformaciones al frame completo
+        imageFrame.style.transform = `
+          perspective(1500px) 
+          rotateX(${rotateX * 0.1}deg) 
+          rotateY(${rotateY * 0.1}deg)
+          translateZ(0px)
+        `;
+
+        // Efecto parallax en los anillos y la imagen interna
+        if (outerRing) outerRing.style.transform = `translateZ(-30px) translateX(${deltaX * -0.01 * intensity}px) translateY(${deltaY * -0.01 * intensity}px)`;
+        if (middleRing) middleRing.style.transform = `translateZ(0px) translateX(${deltaX * 0.02 * intensity}px) translateY(${deltaY * 0.02 * intensity}px)`;
+        if (innerCircle) innerCircle.style.transform = `translateZ(30px) translateX(${deltaX * 0.04 * intensity}px) translateY(${deltaY * 0.04 * intensity}px)`;
+        if (heroMainImage) heroMainImage.style.transform = `
+          scale3d(1.05, 1.05, 1.05)
+          translateZ(50px)
+          translateX(${deltaX * 0.08 * intensity}px)
+          translateY(${deltaY * 0.08 * intensity}px)
+          rotateY(${-rotateY * 0.05}deg)
+          rotateX(${rotateX * 0.05}deg)
+        `;
+      });
+
+      // Resetear la posición cuando el ratón sale del área
+      heroImageContent.addEventListener('mouseleave', () => {
+        resetTransformations();
+      });
+    }
+
+    function resetTransformations() {
+      imageFrame.style.transform = `perspective(1500px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+      if (outerRing) outerRing.style.transform = `translateZ(-30px)`;
+      if (middleRing) middleRing.style.transform = `translateZ(0px)`;
+      if (innerCircle) innerCircle.style.transform = `translateZ(30px)`;
+      if (heroMainImage) heroMainImage.style.transform = `
+        scale3d(1.05, 1.05, 1.05)
+        translateZ(50px)
+        translateX(0px)
+        translateY(0px)
+        rotateY(0deg)
+        rotateX(0deg)
+      `;
+    }
+
+    // Resetear transformaciones al cargar la página
+    resetTransformations();
+  });
+</script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+  :root {
+    /* Colores base */
+    --primary-text-color: #0d1e3d;
+    --secondary-text-color: #5d6d7e;
+    --white: #ffffff;
+    
+    /* Fondo con gradiente sutil y cálido */
+    --hero-bg-start: #f7f8f9;
+    --hero-bg-end: #f0f3f6;
+    
+    /* Colores para el marco y el resplandor */
+    --outer-glow-color: rgba(255, 255, 255, 0.9);
+    --outer-ring-bg: #ffffff;
+    --outer-ring-shadow-color: rgba(0, 0, 0, 0.08);
+    
+    /* Anillo medio: el anillo naranja */
+    --middle-ring-bg-start: #ff8c00;
+    --middle-ring-bg-end: #ffa500;
+    --middle-ring-shadow-inner: rgba(204, 82, 0, 0.4);
+    --middle-ring-shadow-outer: rgba(244, 128, 36, 0.3);
+    
+    /* Círculo interior: el fondo rojizo del fuego */
+    --inner-circle-bg-start: #ff7d19;
+    --inner-circle-bg-end: #e44147;
+    --inner-circle-shadow-inner: rgba(200, 50, 0, 0.9);
+    --inner-circle-shadow-outer: rgba(255, 87, 34, 0.4);
+    
+    /* Botón con gradiente vibrante */
+    --button-bg-start: #ff8c00;
+    --button-bg-end: #ff5e00;
+    --button-hover-start: #e67d00;
+    --button-hover-end: #e64d00;
+    
+    /* Título con gradiente de verde a azul-turquesa */
+    --title-gradient-start: #10b981;
+    --title-gradient-end: #06b6d4;
+    
+    /* Blobs orgánicos */
+    --blob-purple: rgba(167, 139, 250, 0.3);
+    --blob-pink: rgba(244, 114, 182, 0.25);
+    --blob-green: rgba(52, 211, 153, 0.25);
+    --blob-yellow: rgba(251, 191, 36, 0.3);
+    
+    /* Colores de la onda de energía */
+    --energy-wave-color-start: rgba(255, 255, 255, 0.7);
+    --energy-wave-color-end: rgba(255, 255, 255, 0);
+    --energy-shadow-color-start: rgba(255, 255, 255, 0.8);
+    --energy-shadow-color-middle: rgba(255, 165, 0, 0.6);
+    --energy-shadow-color-end: rgba(255, 87, 34, 0.4);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--hero-bg-start), var(--hero-bg-end));
+    padding: 4rem 1rem;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    gap: 4rem;
+    position: relative;
+    z-index: 10;
+    padding: 0 2rem;
+    padding-top: 3%;
+
+  }
+
+  .hero-text-content {
+    flex: 1 1 45%;
+    max-width: 550px;
+    text-align: left;
+    order: 2;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--title-gradient-start), var(--title-gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--secondary-text-color);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, var(--button-bg-start), var(--button-bg-end));
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    transform: perspective(1px) translateZ(0);
+  }
+
+  .hero-button:hover {
+    background: linear-gradient(135deg, var(--button-hover-start), var(--button-hover-end));
+    transform: translateY(-2px) scale(1.01) perspective(1px) translateZ(0);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  }
+
+  .hero-image-content {
+    flex: 1 1 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    order: 1;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* DISEÑO PREMIUM DE ANILLOS CONCÉNTRICOS CON PROFUNDIDAD REAL */
+  .image-frame {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    max-width: 80vw;
+    max-height: 80vw;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+  }
+
+  /* Anillo exterior */
+  .outer-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: transparent;
+    z-index: 1;
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 20px 8px rgba(255, 165, 0, 0.1);
+    transform: translateZ(-30px);
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Pseudo-elementos para las ondas de energía */
+  .outer-ring::before,
+  .outer-ring::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--energy-wave-color-start) 0%, var(--energy-wave-color-end) 70%);
+    box-shadow: 0 0 10px 5px var(--energy-shadow-color-start);
+    transform: scale3d(0.5, 0.5, 0.5) rotateX(0deg) translateZ(-10px);
+    opacity: 0;
+    animation: pulse-energy-wave 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    transform-style: preserve-3d;
+  }
+
+  .outer-ring::after {
+    animation-delay: 1.75s;
+  }
+
+  /* Animación de la onda de energía 3D */
+  @keyframes pulse-energy-wave {
+    0% {
+      transform: scale3d(0.4, 0.4, 0.4) rotateX(0deg) translateZ(-10px);
+      opacity: 0.8;
+      box-shadow:
+        0 0 15px 8px var(--energy-shadow-color-start),
+        0 0 30px 15px var(--energy-shadow-color-middle);
+    }
+    50% {
+      transform: scale3d(1.1, 1.1, 1.1) rotateX(15deg) translateZ(0px);
+      opacity: 0.4;
+      box-shadow:
+        0 0 25px 12px var(--energy-shadow-color-middle),
+        0 0 50px 25px var(--energy-shadow-color-end);
+    }
+    100% {
+      transform: scale3d(1.6, 1.6, 1.6) rotateX(30deg) translateZ(10px);
+      opacity: 0;
+      box-shadow: 0 0 60px 30px rgba(255, 255, 255, 0);
+      filter: blur(8px);
+    }
+  }
+
+  /* Anillo medio */
+  .middle-ring {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--middle-ring-bg-start), var(--middle-ring-bg-end));
+    z-index: 2;
+    transform: translateZ(0px);
+    box-shadow:
+      inset 0 4px 8px rgba(0,0,0,0.1),
+      inset 0 0 15px 5px rgba(255, 255, 255, 0.6),
+      0 4px 10px rgba(255, 152, 0, 0.3),
+      0 0 20px 5px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Círculo interior */
+  .inner-circle {
+    position: absolute;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--inner-circle-bg-start), var(--inner-circle-bg-end));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    transform: translateZ(30px);
+    box-shadow:
+      inset 0 6px 12px rgba(0, 0, 0, 0.4),
+      0 0 25px rgba(255, 87, 34, 0.5),
+      0 0 35px 10px rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Imagen del fuego con efectos premium */
+  .hero-main-image {
+    width: 150%;
+    height: 150%;
+    object-fit: contain;
+    z-index: 4;
+    transform: scale3d(1.05, 1.05, 1.05) translateZ(50px);
+    filter:
+      brightness(1.1)
+      contrast(1.1)
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+      drop-shadow(0 0 16px rgba(255, 193, 7, 0.6))
+      drop-shadow(0 0 24px rgba(255, 87, 34, 0.4));
+    transition: transform 0.2s ease-out, filter 0.4s ease;
+  }
+
+  /* Blobs orgánicos mejorados */
+  .background-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    filter: blur(120px);
+    animation: organic-flow 60s infinite ease-in-out;
+    opacity: 0.8;
+  }
+
+  /* Posicionamiento orgánico de blobs */
+  .blob-one {
+    width: 280px;
+    height: 320px;
+    top: -8%;
+    left: -12%;
+    background: var(--blob-purple);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation-delay: 0s;
+    animation-duration: 65s;
+  }
+
+  .blob-two {
+    width: 350px;
+    height: 380px;
+    bottom: -12%;
+    right: -10%;
+    background: var(--blob-pink);
+    border-radius: 30% 70% 60% 40% / 40% 60% 30% 70%;
+    animation-delay: 15s;
+    animation-duration: 70s;
+  }
+
+  .blob-three {
+    width: 200px;
+    height: 240px;
+    top: 20%;
+    right: 15%;
+    background: var(--blob-green);
+    border-radius: 70% 30% 40% 60% / 30% 70% 60% 40%;
+    animation-delay: 30s;
+    animation-duration: 55s;
+  }
+
+  .blob-four {
+    width: 320px;
+    height: 280px;
+    bottom: 15%;
+    left: 8%;
+    background: var(--blob-yellow);
+    border-radius: 40% 60% 70% 30% / 70% 40% 30% 60%;
+    animation-delay: 45s;
+    animation-duration: 75s;
+  }
+
+  @keyframes organic-flow {
+    0%, 100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    20% {
+      transform: translate(-8px, -12px) scale(1.05) rotate(72deg);
+      border-radius: 30% 70% 60% 40% / 40% 60% 30% 70%;
+    }
+    40% {
+      transform: translate(12px, 8px) scale(0.95) rotate(144deg);
+      border-radius: 70% 30% 40% 60% / 30% 70% 60% 40%;
+    }
+    60% {
+      transform: translate(-5px, 15px) scale(1.02) rotate(216deg);
+      border-radius: 40% 60% 70% 30% / 70% 40% 30% 60%;
+    }
+    80% {
+      transform: translate(10px, -10px) scale(0.98) rotate(288deg);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .hero-container {
+      flex-direction: column-reverse;
+      text-align: center;
+      gap: 3rem;
+    }
+
+    .hero-text-content {
+      max-width: 100%;
+      order: 1;
+    }
+
+    .hero-image-content {
+      order: 2;
+    }
+
+    .image-frame {
+      width: 280px;
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 3rem 0.5rem;
+    }
+
+    .image-frame {
+      width: 240px;
+      height: 240px;
+    }
+
+    .hero-button {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+</style> -->
+
+
 ---
 // Definimos las propiedades que acepta el componente
 interface Props {
@@ -10,11 +541,29 @@ interface Props {
 }
 
 // Extraemos las propiedades
-const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
-  Astro.props;
+const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro.props;
 ---
 
 <section class="hero-section">
+  <!-- Fondo mejorado con gradiente animado y elementos sutiles -->
+  <div class="background-animation">
+    <div class="gradient-bg"></div>
+    <div class="floating-elements">
+      <div class="float-element float-1"></div>
+      <div class="float-element float-2"></div>
+      <div class="float-element float-3"></div>
+      <div class="float-element float-4"></div>
+      <div class="float-element float-5"></div>
+      <div class="float-element float-6"></div>
+    </div>
+    <div class="light-rays">
+      <div class="ray ray-1"></div>
+      <div class="ray ray-2"></div>
+      <div class="ray ray-3"></div>
+    </div>
+  </div>
+  
+  <!-- Blobs orgánicos mejorados -->
   <div class="background-blobs">
     <div class="blob blob-one"></div>
     <div class="blob blob-two"></div>
@@ -23,6 +572,15 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
   </div>
 
   <div class="hero-container">
+    <div class="hero-image-content">
+      <div class="image-frame" id="image-frame-3d">
+        <div class="outer-ring"></div>
+        <div class="middle-ring"></div>
+        <div class="inner-circle">
+          <img src={imageSrc} alt={imageAlt} class="hero-main-image" />
+        </div>
+      </div>
+    </div>
     <div class="hero-text-content">
       <h1 class="hero-title">{title}</h1>
       <p class="hero-description">{description}</p>
@@ -32,30 +590,155 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
         </a>
       </div>
     </div>
-    <div class="hero-image-content">
-      <img src={imageSrc} alt={imageAlt} class="hero-main-image fire-effect" />
-    </div>
   </div>
 </section>
+
+<script is:inline>
+  // Script para el efecto de seguir el puntero del mouse
+  document.addEventListener('DOMContentLoaded', () => {
+    const imageFrame = document.getElementById('image-frame-3d');
+    if (!imageFrame) return;
+
+    const heroImageContent = imageFrame.closest('.hero-image-content');
+    if (!heroImageContent) return;
+
+    const outerRing = imageFrame.querySelector('.outer-ring');
+    const middleRing = imageFrame.querySelector('.middle-ring');
+    const innerCircle = imageFrame.querySelector('.inner-circle');
+    const heroMainImage = imageFrame.querySelector('.hero-main-image');
+
+    // Verificar si es un dispositivo móvil
+    const isMobile = window.innerWidth <= 992;
+
+    if (!isMobile) {
+      heroImageContent.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = heroImageContent.getBoundingClientRect();
+
+        // Calcular la posición del ratón relativa al centro del contenedor de la imagen
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+
+        const deltaX = clientX - centerX;
+        const deltaY = clientY - centerY;
+
+        // Normalizar del -1 a 1 para mayor control de la intensidad
+        const rotateY = (deltaX / width) * 40;
+        const rotateX = (deltaY / height) * -40;
+
+        // Intensidad de movimiento para cada capa
+        const intensity = 0.5;
+
+        // Aplicar transformaciones al frame completo
+        imageFrame.style.transform = `
+          perspective(1500px) 
+          rotateX(${rotateX * 0.1}deg) 
+          rotateY(${rotateY * 0.1}deg)
+          translateZ(0px)
+        `;
+
+        // Efecto parallax en los anillos y la imagen interna
+        if (outerRing) outerRing.style.transform = `translateZ(-30px) translateX(${deltaX * -0.01 * intensity}px) translateY(${deltaY * -0.01 * intensity}px)`;
+        if (middleRing) middleRing.style.transform = `translateZ(0px) translateX(${deltaX * 0.02 * intensity}px) translateY(${deltaY * 0.02 * intensity}px)`;
+        if (innerCircle) innerCircle.style.transform = `translateZ(30px) translateX(${deltaX * 0.04 * intensity}px) translateY(${deltaY * 0.04 * intensity}px)`;
+        if (heroMainImage) heroMainImage.style.transform = `
+          scale3d(1.05, 1.05, 1.05)
+          translateZ(50px)
+          translateX(${deltaX * 0.08 * intensity}px)
+          translateY(${deltaY * 0.08 * intensity}px)
+          rotateY(${-rotateY * 0.05}deg)
+          rotateX(${rotateX * 0.05}deg)
+        `;
+      });
+
+      // Resetear la posición cuando el ratón sale del área
+      heroImageContent.addEventListener('mouseleave', () => {
+        resetTransformations();
+      });
+    }
+
+    function resetTransformations() {
+      imageFrame.style.transform = `perspective(1500px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+      if (outerRing) outerRing.style.transform = `translateZ(-30px)`;
+      if (middleRing) middleRing.style.transform = `translateZ(0px)`;
+      if (innerCircle) innerCircle.style.transform = `translateZ(30px)`;
+      if (heroMainImage) heroMainImage.style.transform = `
+        scale3d(1.05, 1.05, 1.05)
+        translateZ(50px)
+        translateX(0px)
+        translateY(0px)
+        rotateY(0deg)
+        rotateX(0deg)
+      `;
+    }
+
+    // Resetear transformaciones al cargar la página
+    resetTransformations();
+  });
+</script>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
   :root {
-    --primary-text-color: #2c2c2e;
-    --secondary-text-color: #555555;
-    --accent-color: #007bff;
-    --accent-hover: #0056b3;
+    /* Colores base */
+    --primary-text-color: #0d1e3d;
+    --secondary-text-color: #5d6d7e;
     --white: #ffffff;
-    --bg-light: #f9fafb;
-    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.05);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.01);
-
-    /* Colores para los blobs, inspirados en el diseño de Globant */
-    --blob-color-1: #e0ffb3;
-    --blob-color-2: #c2f0f0;
-    --blob-color-3: #b3d9ff;
-    --blob-color-4: #ffe0b3;
+    
+    /* Fondo con gradiente sutil y cálido - MEJORADO */
+    --hero-bg-start: #f8fafc;
+    --hero-bg-middle: #f1f5f9;
+    --hero-bg-end: #e2e8f0;
+    
+    /* Colores para elementos flotantes */
+    --float-color-1: rgba(255, 255, 255, 0.8);
+    --float-color-2: rgba(248, 250, 252, 0.6);
+    --float-color-3: rgba(241, 245, 249, 0.7);
+    
+    /* Colores para rayos de luz */
+    --ray-color-1: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    --ray-color-2: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    
+    /* Colores para el marco y el resplandor */
+    --outer-glow-color: rgba(255, 255, 255, 0.9);
+    --outer-ring-bg: #ffffff;
+    --outer-ring-shadow-color: rgba(0, 0, 0, 0.08);
+    
+    /* Anillo medio: el anillo naranja */
+    --middle-ring-bg-start: #ff8c00;
+    --middle-ring-bg-end: #ffa500;
+    --middle-ring-shadow-inner: rgba(204, 82, 0, 0.4);
+    --middle-ring-shadow-outer: rgba(244, 128, 36, 0.3);
+    
+    /* Círculo interior: el fondo rojizo del fuego */
+    --inner-circle-bg-start: #ff7d19;
+    --inner-circle-bg-end: #e44147;
+    --inner-circle-shadow-inner: rgba(200, 50, 0, 0.9);
+    --inner-circle-shadow-outer: rgba(255, 87, 34, 0.4);
+    
+    /* Botón con gradiente vibrante */
+    --button-bg-start: #ff8c00;
+    --button-bg-end: #ff5e00;
+    --button-hover-start: #e67d00;
+    --button-hover-end: #e64d00;
+    
+    /* Título con gradiente de verde a azul-turquesa */
+    --title-gradient-start: #10b981;
+    --title-gradient-end: #06b6d4;
+    
+    /* Blobs orgánicos - colores más sutiles en escala blanca */
+    --blob-purple: rgba(167, 139, 250, 0.15);
+    --blob-pink: rgba(244, 114, 182, 0.12);
+    --blob-green: rgba(52, 211, 153, 0.12);
+    --blob-yellow: rgba(251, 191, 36, 0.15);
+    
+    /* Colores de la onda de energía */
+    --energy-wave-color-start: rgba(255, 255, 255, 0.7);
+    --energy-wave-color-end: rgba(255, 255, 255, 0);
+    --energy-shadow-color-start: rgba(255, 255, 255, 0.8);
+    --energy-shadow-color-middle: rgba(255, 165, 0, 0.6);
+    --energy-shadow-color-end: rgba(255, 87, 34, 0.4);
   }
 
   * {
@@ -64,13 +747,6 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
     box-sizing: border-box;
   }
 
-  body {
-    font-family: "Inter", sans-serif;
-    background-color: var(--white);
-    color: var(--primary-text-color);
-  }
-
-  /* --- Sección principal del Hero --- */
   .hero-section {
     min-height: 100vh;
     display: flex;
@@ -78,82 +754,257 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background-color: var(--white);
     padding: 4rem 1rem;
-    padding-top: 8rem;
+  }
+
+  /* Fondo animado mejorado en escala blanca */
+  .background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .gradient-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--hero-bg-start) 0%, var(--hero-bg-middle) 50%, var(--hero-bg-end) 100%);
+    animation: gentleShift 20s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes gentleShift {
+    0%, 100% {
+      background-position: 0% 50%;
+      opacity: 1;
+    }
+    50% {
+      background-position: 100% 50%;
+      opacity: 0.98;
+    }
+  }
+
+  /* Elementos flotantes sutiles */
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .float-element {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--float-color-1);
+    filter: blur(40px);
+    animation: gentleFloat 25s infinite ease-in-out;
+  }
+
+  .float-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 5%;
+    background: var(--float-color-1);
+    animation-delay: 0s;
+    animation-duration: 30s;
+  }
+
+  .float-2 {
+    width: 150px;
+    height: 150px;
+    top: 70%;
+    left: 80%;
+    background: var(--float-color-2);
+    animation-delay: 5s;
+    animation-duration: 35s;
+  }
+
+  .float-3 {
+    width: 180px;
+    height: 180px;
+    top: 30%;
+    left: 75%;
+    background: var(--float-color-3);
+    animation-delay: 10s;
+    animation-duration: 28s;
+  }
+
+  .float-4 {
+    width: 120px;
+    height: 120px;
+    top: 80%;
+    left: 15%;
+    background: var(--float-color-1);
+    animation-delay: 15s;
+    animation-duration: 32s;
+  }
+
+  .float-5 {
+    width: 160px;
+    height: 160px;
+    top: 20%;
+    left: 60%;
+    background: var(--float-color-2);
+    animation-delay: 20s;
+    animation-duration: 26s;
+  }
+
+  .float-6 {
+    width: 140px;
+    height: 140px;
+    top: 65%;
+    left: 40%;
+    background: var(--float-color-3);
+    animation-delay: 12s;
+    animation-duration: 34s;
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translate(20px, -15px) scale(1.05);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(-15px, 10px) scale(0.95);
+      opacity: 0.7;
+    }
+    75% {
+      transform: translate(10px, 20px) scale(1.02);
+      opacity: 0.9;
+    }
+  }
+
+  /* Rayos de luz sutiles */
+  .light-rays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .ray {
+    position: absolute;
+    height: 1px;
+    background: var(--ray-color-1);
+    filter: blur(1px);
+    animation: rayMove 15s infinite linear;
+  }
+
+  .ray-1 {
+    top: 25%;
+    width: 100px;
+    animation-delay: 0s;
+    animation-duration: 20s;
+  }
+
+  .ray-2 {
+    top: 60%;
+    width: 150px;
+    background: var(--ray-color-2);
+    animation-delay: 7s;
+    animation-duration: 25s;
+  }
+
+  .ray-3 {
+    top: 45%;
+    width: 120px;
+    animation-delay: 12s;
+    animation-duration: 18s;
+  }
+
+  @keyframes rayMove {
+    0% {
+      left: -100px;
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.5;
+    }
+    90% {
+      opacity: 0.5;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
   }
 
   .hero-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     max-width: 1200px;
     width: 100%;
     gap: 4rem;
     position: relative;
     z-index: 10;
     padding: 0 2rem;
+    padding-top: 3%;
   }
 
   .hero-text-content {
     flex: 1 1 45%;
     max-width: 550px;
     text-align: left;
-    padding-right: 2rem;
+    order: 2;
   }
 
   .hero-title {
-    font-size: clamp(2.8rem, 5.5vw, 4rem);
+    font-size: clamp(2.5rem, 5.5vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.15;
-    color: var(--primary-text-color);
+    line-height: 1.2;
     margin-bottom: 1.5rem;
-    background: linear-gradient(90deg, #007bff, #0056b3);
+    background: linear-gradient(135deg, var(--title-gradient-start), var(--title-gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
   }
 
   .hero-description {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     color: var(--secondary-text-color);
     margin-bottom: 2.5rem;
-  }
-
-  .hero-actions {
-    margin-top: 1.5rem;
   }
 
   .hero-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2.5rem;
-    background: linear-gradient(
-      45deg,
-      var(--accent-color),
-      var(--accent-hover)
-    );
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, var(--button-bg-start), var(--button-bg-end));
     color: var(--white);
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     border-radius: 50px;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    transform: perspective(1px) translateZ(0);
   }
 
   .hero-button:hover {
-    background: linear-gradient(
-      45deg,
-      var(--accent-hover),
-      var(--accent-color)
-    );
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+    background: linear-gradient(135deg, var(--button-hover-start), var(--button-hover-end));
+    transform: translateY(-2px) scale(1.01) perspective(1px) translateZ(0);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
   }
 
   .hero-image-content {
@@ -162,60 +1013,139 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
     justify-content: center;
     align-items: center;
     min-width: 300px;
-  }
-
-  .hero-main-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 1rem;
-    transition: transform 0.3s ease-in-out;
+    order: 1;
     position: relative;
-    z-index: 2;
+    z-index: 5;
   }
 
-  /* 🔥 EFECTO DE FUEGO ELEGANTE MEJORADO */
-  .fire-effect {
-    filter: 
-      drop-shadow(0 0 20px rgba(255, 100, 0, 0.6))
-      drop-shadow(0 0 40px rgba(255, 50, 0, 0.4))
-      drop-shadow(0 0 60px rgba(255, 0, 0, 0.2));
-    animation: elegant-fire 3s ease-in-out infinite;
+  /* DISEÑO PREMIUM DE ANILLOS CONCÉNTRICOS CON PROFUNDIDAD REAL */
+  .image-frame {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    max-width: 80vw;
+    max-height: 80vw;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
   }
 
-  @keyframes elegant-fire {
-    0%, 100% {
-      filter: 
-        drop-shadow(0 0 15px rgba(255, 120, 0, 0.5))
-        drop-shadow(0 0 35px rgba(255, 60, 0, 0.3))
-        drop-shadow(0 0 55px rgba(255, 20, 0, 0.15));
-    }
-    25% {
-      filter: 
-        drop-shadow(0 0 20px rgba(255, 140, 0, 0.6))
-        drop-shadow(0 0 45px rgba(255, 80, 0, 0.4))
-        drop-shadow(0 0 65px rgba(255, 40, 0, 0.25));
+  /* Anillo exterior */
+  .outer-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: transparent;
+    z-index: 1;
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 20px 8px rgba(255, 165, 0, 0.1);
+    transform: translateZ(-30px);
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Pseudo-elementos para las ondas de energía */
+  .outer-ring::before,
+  .outer-ring::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--energy-wave-color-start) 0%, var(--energy-wave-color-end) 70%);
+    box-shadow: 0 0 10px 5px var(--energy-shadow-color-start);
+    transform: scale3d(0.5, 0.5, 0.5) rotateX(0deg) translateZ(-10px);
+    opacity: 0;
+    animation: pulse-energy-wave 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    transform-style: preserve-3d;
+  }
+
+  .outer-ring::after {
+    animation-delay: 1.75s;
+  }
+
+  /* Animación de la onda de energía 3D */
+  @keyframes pulse-energy-wave {
+    0% {
+      transform: scale3d(0.4, 0.4, 0.4) rotateX(0deg) translateZ(-10px);
+      opacity: 0.8;
+      box-shadow:
+        0 0 15px 8px var(--energy-shadow-color-start),
+        0 0 30px 15px var(--energy-shadow-color-middle);
     }
     50% {
-      filter: 
-        drop-shadow(0 0 25px rgba(255, 160, 0, 0.7))
-        drop-shadow(0 0 50px rgba(255, 100, 0, 0.5))
-        drop-shadow(0 0 75px rgba(255, 60, 0, 0.3));
+      transform: scale3d(1.1, 1.1, 1.1) rotateX(15deg) translateZ(0px);
+      opacity: 0.4;
+      box-shadow:
+        0 0 25px 12px var(--energy-shadow-color-middle),
+        0 0 50px 25px var(--energy-shadow-color-end);
     }
-    75% {
-      filter: 
-        drop-shadow(0 0 20px rgba(255, 140, 0, 0.6))
-        drop-shadow(0 0 45px rgba(255, 80, 0, 0.4))
-        drop-shadow(0 0 65px rgba(255, 40, 0, 0.25));
+    100% {
+      transform: scale3d(1.6, 1.6, 1.6) rotateX(30deg) translateZ(10px);
+      opacity: 0;
+      box-shadow: 0 0 60px 30px rgba(255, 255, 255, 0);
+      filter: blur(8px);
     }
   }
 
-  .hero-main-image:hover {
-    transform: scale(1.02);
-    animation-duration: 1.5s;
+  /* Anillo medio */
+  .middle-ring {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--middle-ring-bg-start), var(--middle-ring-bg-end));
+    z-index: 2;
+    transform: translateZ(0px);
+    box-shadow:
+      inset 0 4px 8px rgba(0,0,0,0.1),
+      inset 0 0 15px 5px rgba(255, 255, 255, 0.6),
+      0 4px 10px rgba(255, 152, 0, 0.3),
+      0 0 20px 5px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease-out;
   }
 
-  /* --- Estilos de los "blobs" de fondo (manchas de color) --- */
+  /* Círculo interior */
+  .inner-circle {
+    position: absolute;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--inner-circle-bg-start), var(--inner-circle-bg-end));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    transform: translateZ(30px);
+    box-shadow:
+      inset 0 6px 12px rgba(0, 0, 0, 0.4),
+      0 0 25px rgba(255, 87, 34, 0.5),
+      0 0 35px 10px rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Imagen del fuego con efectos premium */
+  .hero-main-image {
+    width: 150%;
+    height: 150%;
+    object-fit: contain;
+    z-index: 4;
+    transform: scale3d(1.05, 1.05, 1.05) translateZ(50px);
+    filter:
+      brightness(1.1)
+      contrast(1.1)
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+      drop-shadow(0 0 16px rgba(255, 193, 7, 0.6))
+      drop-shadow(0 0 24px rgba(255, 87, 34, 0.4));
+    transition: transform 0.2s ease-out, filter 0.4s ease;
+  }
+
+  /* Blobs orgánicos mejorados */
   .background-blobs {
     position: absolute;
     top: 0;
@@ -225,142 +1155,119 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.8;
   }
 
   .blob {
     position: absolute;
-    border-radius: 40% 60% 70% 30% / 30% 70% 30% 70%;
-    filter: blur(100px);
-    animation: floating-blob 30s infinite ease-in-out;
-    opacity: 0.7;
+    filter: blur(120px);
+    animation: organic-flow 60s infinite ease-in-out;
+    opacity: 0.8;
   }
 
+  /* Posicionamiento orgánico de blobs */
   .blob-one {
-    width: 50vw;
-    height: 50vw;
-    top: -10%;
-    right: -20%;
-    background-color: var(--blob-color-1);
-    animation-duration: 32s;
+    width: 280px;
+    height: 320px;
+    top: -8%;
+    left: -12%;
+    background: var(--blob-purple);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     animation-delay: 0s;
+    animation-duration: 65s;
   }
 
   .blob-two {
-    width: 60vw;
-    height: 60vw;
-    bottom: -20%;
-    left: -10%;
-    background-color: var(--blob-color-2);
-    animation-duration: 38s;
-    animation-delay: 3s;
-    border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%;
+    width: 350px;
+    height: 380px;
+    bottom: -12%;
+    right: -10%;
+    background: var(--blob-pink);
+    border-radius: 30% 70% 60% 40% / 40% 60% 30% 70%;
+    animation-delay: 15s;
+    animation-duration: 70s;
   }
 
   .blob-three {
-    width: 40vw;
-    height: 40vw;
-    top: 30%;
-    left: 20%;
-    background-color: var(--blob-color-3);
-    animation-duration: 45s;
-    animation-delay: 6s;
-    border-radius: 50% 50% 30% 70% / 70% 30% 70% 30%;
+    width: 200px;
+    height: 240px;
+    top: 20%;
+    right: 15%;
+    background: var(--blob-green);
+    border-radius: 70% 30% 40% 60% / 30% 70% 60% 40%;
+    animation-delay: 30s;
+    animation-duration: 55s;
   }
 
   .blob-four {
-    width: 55vw;
-    height: 55vw;
-    top: 70%;
-    right: 15%;
-    background-color: var(--blob-color-4);
-    animation-duration: 30s;
-    animation-delay: 9s;
-    border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%;
+    width: 320px;
+    height: 280px;
+    bottom: 15%;
+    left: 8%;
+    background: var(--blob-yellow);
+    border-radius: 40% 60% 70% 30% / 70% 40% 30% 60%;
+    animation-delay: 45s;
+    animation-duration: 75s;
   }
 
-  @keyframes floating-blob {
-    0% {
-      transform: translate(0, 0) scale(1);
+  @keyframes organic-flow {
+    0%, 100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
-    33% {
-      transform: translate(-5%, -5%) scale(1.03);
+    20% {
+      transform: translate(-8px, -12px) scale(1.05) rotate(72deg);
+      border-radius: 30% 70% 60% 40% / 40% 60% 30% 70%;
     }
-    66% {
-      transform: translate(5%, 5%) scale(0.97);
+    40% {
+      transform: translate(12px, 8px) scale(0.95) rotate(144deg);
+      border-radius: 70% 30% 40% 60% / 30% 70% 60% 40%;
     }
-    100% {
-      transform: translate(0, 0) scale(1);
+    60% {
+      transform: translate(-5px, 15px) scale(1.02) rotate(216deg);
+      border-radius: 40% 60% 70% 30% / 70% 40% 30% 60%;
+    }
+    80% {
+      transform: translate(10px, -10px) scale(0.98) rotate(288deg);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
   }
 
-  /* --- Responsive --- */
+  /* Responsive */
   @media (max-width: 992px) {
     .hero-container {
-      flex-direction: column;
+      flex-direction: column-reverse;
       text-align: center;
       gap: 3rem;
     }
 
     .hero-text-content {
-      padding-right: 0;
       max-width: 100%;
+      order: 1;
     }
 
-    .hero-title {
-      font-size: clamp(2.2rem, 6vw, 3.5rem);
+    .hero-image-content {
+      order: 2;
     }
 
-    .hero-description {
-      font-size: 1.1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-main-image {
-      max-width: 80%;
+    .image-frame {
+      width: 280px;
+      height: 280px;
     }
   }
 
   @media (max-width: 768px) {
     .hero-section {
       padding: 3rem 0.5rem;
-      padding-top: 7rem;
     }
 
-    .hero-title {
-      font-size: clamp(1.8rem, 6vw, 2.5rem);
-    }
-
-    .hero-description {
-      font-size: 1rem;
+    .image-frame {
+      width: 240px;
+      height: 240px;
     }
 
     .hero-button {
       width: 100%;
       max-width: 280px;
-    }
-
-    .fire-effect {
-      filter: 
-        drop-shadow(0 0 15px rgba(255, 100, 0, 0.5))
-        drop-shadow(0 0 30px rgba(255, 50, 0, 0.3))
-        drop-shadow(0 0 45px rgba(255, 0, 0, 0.15));
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-title {
-      font-size: 1.5rem;
-    }
-    
-    .fire-effect {
-      filter: 
-        drop-shadow(0 0 10px rgba(255, 100, 0, 0.4))
-        drop-shadow(0 0 25px rgba(255, 50, 0, 0.2));
     }
   }
 </style>
