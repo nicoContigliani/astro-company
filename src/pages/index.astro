@@ -25,9 +25,7 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
   </section>
 
   <section id="servicios" class="section">
-    <div class="container">
       <ServicesGrid />
-    </div>
   </section>
 
   <section id="contacto">
@@ -75,6 +73,7 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
     background: var(--gradient-light);
     position: relative;
     overflow-x: hidden;
+    
   }
 
   /* Fondo con gradiente global y elementos decorativos */
@@ -102,11 +101,14 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
       );
     z-index: -1;
     pointer-events: none;
+    
   }
 
   .section {
-    padding: 8rem 0;
+    padding-top: 1rem 0;
     position: relative;
+    
+    
   }
 
   /* Añadir efectos de gradiente a las secciones */
@@ -116,12 +118,14 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
       rgba(249, 250, 251, 0.7) 0%,
       rgba(255, 255, 255, 0.9) 100%
     );
+    
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
+    
   }
 
   .section-header {
@@ -386,6 +390,7 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
   .section-header,
   .hero-content {
     animation: fadeIn 0.8s ease-out forwards;
+    
   }
 
   /* Responsive */

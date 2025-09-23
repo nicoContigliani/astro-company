@@ -29,7 +29,7 @@
       </div>
 
       <div class="valores-section animate-up">
-        <h3>Nuestros Valores</h3>
+        <h3 style={{ color: "white" }}>Nuestros Valores</h3>
         <div class="valores-grid">
           <div class="valor-item">
             <div class="valor-icon">💡</div>
@@ -62,11 +62,17 @@
       rgba(240, 248, 255, 1) 0%,
       rgba(255, 255, 255, 0.628) 100%
     );
+
+    background: #0f0c29;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
     position: relative;
     overflow: hidden;
     border-radius: 2%;
     box-shadow: 5px 15px 16px rgba(0, 0, 0, 0.1);
-    padding-bottom: 5%;
+    padding-bottom: 1%;
     margin-bottom: 1%;
   }
 
@@ -83,12 +89,16 @@
   .section-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #333;
+    color: #ffffff;
+  }
+  .valores-section animate-up{
+    color: #ffffff;
+
   }
 
   .section-subtitle {
     font-size: 1.1rem;
-    color: #666;
+    color: #c6c6c6;
   }
   
   .nosotros-intro {
@@ -101,7 +111,7 @@
     font-size: 1.2rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
-    color: #666;
+    color: #c6c6c6;
   }
 
   .vm-section {
@@ -141,6 +151,7 @@
   
   .valores-section {
     margin-top: 4rem;
+    
   }
   
   .valores-section h3 {
