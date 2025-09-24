@@ -1,4 +1,4 @@
----
+<!-- ---
 // components/Nosotros.astro
 ---
 
@@ -302,5 +302,405 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
 
     const animatedElements = document.querySelectorAll(".animate-up, .animate-fade-in");
     animatedElements.forEach(el => observer.observe(el));
+  });
+</script> -->
+
+
+
+---
+// components/Nosotros.astro
+---
+
+<section id="nosotros" class="nosotros-section">
+  <div class="waves-container" aria-hidden="true">
+    <div class="wave -one"></div>
+    <div class="wave -two"></div>
+    <div class="wave -three"></div>
+  </div>
+
+  <div class="container">
+    <div class="section-header" data-animate="fade-in">
+      <h2 class="section-title">Sobre Nosotros</h2>
+      <p class="section-subtitle">Transformamos ideas en soluciones digitales de vanguardia.</p>
+    </div>
+
+    <div class="nosotros-content">
+      <div class="nosotros-intro" data-animate="up">
+        <p>En CompaniesAll, somos un equipo apasionado por la tecnología con la misión de impulsar el crecimiento de tu negocio. Con años de experiencia, ofrecemos soluciones de desarrollo y mantenimiento de sistemas a medida para optimizar tus procesos y ayudarte a alcanzar tus metas.</p>
+      </div>
+
+      <div class="vm-section" data-animate="fade-in">
+        <div class="vm-card">
+          <div class="vm-icon" aria-hidden="true">🚀</div>
+          <h3>Nuestra Misión y Visión</h3>
+          <p>Ser tu socio tecnológico de confianza, creando soluciones innovadoras que te mantengan a la vanguardia. Nos comprometemos a entregar calidad, eficiencia y transparencia en cada proyecto.</p>
+        </div>
+      </div>
+
+      <div class="valores-section" data-animate="up">
+        <h3 class="valores-title">Nuestros Valores</h3>
+        <div class="valores-grid">
+          <div class="valor-item">
+            <div class="valor-icon" aria-hidden="true">💡</div>
+            <h4>Innovación</h4>
+            <p>Siempre buscando la próxima gran idea para tu proyecto.</p>
+          </div>
+          
+          <div class="valor-item">
+            <div class="valor-icon" aria-hidden="true">🤝</div>
+            <h4>Colaboración</h4>
+            <p>Trabajamos de la mano contigo para asegurar el éxito.</p>
+          </div>
+          
+          <div class="valor-item">
+            <div class="valor-icon" aria-hidden="true">⚡</div>
+            <h4>Excelencia</h4>
+            <p>Nos dedicamos a la calidad y la mejora continua.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Variables CSS optimizadas */
+  :root {
+    --gradient-bg: linear-gradient(to top, #24243e, #302b63, #0f0c29);
+    --text-primary: #ffffff;
+    --text-secondary: #c6c6c6;
+    --text-tertiary: #666;
+    --accent-color: #007bff;
+    --card-bg: #ffffff;
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+    --section-padding: clamp(2rem, 6vw, 4rem);
+  }
+
+  /* Reset y estilos base optimizados */
+  .nosotros-section {
+    padding: var(--section-padding) 0;
+    background: var(--gradient-bg);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: min(1200px, 90vw);
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+  }
+
+  /* Header section */
+  .section-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  
+  .section-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Contenido principal */
+  .nosotros-intro {
+    text-align: center;
+    max-width: min(800px, 90vw);
+    margin: 0 auto clamp(3rem, 6vw, 4rem);
+  }
+  
+  .nosotros-intro p {
+    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  /* Tarjeta Misión/Visón */
+  .vm-section {
+    max-width: min(600px, 90vw);
+    margin: 0 auto clamp(3rem, 6vw, 4rem);
+  }
+  
+  .vm-card {
+    background: var(--card-bg);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: var(--transition);
+    will-change: transform, box-shadow;
+  }
+  
+  .vm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .vm-icon {
+    font-size: clamp(2.5rem, 6vw, 3rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .vm-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
+  }
+  
+  .vm-card p {
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+  }
+  
+  /* Sección de valores */
+  .valores-section {
+    margin-top: clamp(3rem, 6vw, 4rem);
+  }
+  
+  .valores-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: clamp(2rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+  }
+  
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1.5rem, 3vw, 2rem);
+    justify-content: center;
+  }
+  
+  .valor-item {
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    will-change: transform, box-shadow;
+  }
+  
+  .valor-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .valor-icon {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 1.2rem;
+  }
+  
+  .valor-item h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  }
+  
+  .valor-item p {
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+  
+  /* Animación de ondas optimizada */
+  .waves-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0.1;
+    border-radius: 40%;
+    transform-origin: 50% 50%;
+    animation: sway 30s infinite ease-in-out;
+    will-change: transform;
+  }
+
+  .wave.-two {
+    animation: sway 35s infinite ease-in-out;
+    opacity: 0.08;
+    background-color: rgba(179, 217, 255, 0.5);
+    transform: rotate(20deg);
+  }
+
+  .wave.-three {
+    animation: sway 40s infinite ease-in-out;
+    opacity: 0.05;
+    background-color: rgba(135, 206, 250, 0.5);
+    transform: rotate(40deg);
+  }
+
+  @keyframes sway {
+    0%, 100% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(5deg) scale(1.01);
+    }
+  }
+
+  /* Animaciones optimizadas con prefers-reduced-motion */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    [data-animate="fade-in"] {
+      transform: none;
+    }
+    
+    [data-animate].animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .valores-grid [data-animate].animated .valor-item {
+      animation: slideUp 0.6s ease-out forwards;
+    }
+    
+    .valores-grid [data-animate].animated .valor-item:nth-child(1) { animation-delay: 0.1s; }
+    .valores-grid [data-animate].animated .valor-item:nth-child(2) { animation-delay: 0.2s; }
+    .valores-grid [data-animate].animated .valor-item:nth-child(3) { animation-delay: 0.3s; }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave {
+      animation: none;
+      opacity: 0.05;
+    }
+    
+    .vm-card,
+    .valor-item {
+      transition: none;
+    }
+  }
+
+  /* Media queries optimizadas */
+  @media (max-width: 768px) {
+    .nosotros-section {
+      padding: clamp(1.5rem, 4vw, 2rem) 0;
+    }
+    
+    .valores-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .valor-item {
+      padding: 1.5rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+    
+    .vm-card,
+    .valor-item {
+      padding: 1.25rem;
+    }
+    
+    .waves-container {
+      display: none; /* Mejorar performance en móviles */
+    }
+  }
+
+  /* Mejoras de accesibilidad */
+  @media (prefers-contrast: high) {
+    .vm-card,
+    .valor-item {
+      border: 2px solid var(--accent-color);
+    }
+  }
+</style>
+
+<script>
+  // Script optimizado para performance
+  document.addEventListener('DOMContentLoaded', () => {
+    'use strict';
+    
+    // Configuración del Intersection Observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '50px', // Carga antes de que sea visible
+      threshold: 0.15 // Menos sensible para mejor performance
+    };
+    
+    let observer:any;
+    
+    // Verificar si el usuario prefiere movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!prefersReducedMotion) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      // Observar elementos animados
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      animatedElements.forEach(el => observer.observe(el));
+    } else {
+      // Si prefiere movimiento reducido, mostrar todo inmediatamente
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      animatedElements.forEach(el => el.classList.add('animated'));
+    }
+    
+    // Cleanup para evitar memory leaks
+    window.addEventListener('beforeunload', () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    });
   });
 </script>
