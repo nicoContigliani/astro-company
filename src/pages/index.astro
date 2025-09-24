@@ -1,4 +1,4 @@
----
+<!-- ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/Hero.astro";
 import IndustriesSection from "../components/IndustriesSection.astro";
@@ -411,6 +411,161 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
           rgba(0, 122, 255, 0.02) 0%,
           transparent 15%
         );
+    }
+  }
+</style> -->
+
+
+
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Hero from "../components/Hero.astro";
+import IndustriesSection from "../components/IndustriesSection.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+import About from "../components/About.astro";
+import Contacto from "../components/react/Contacto";
+import MarcasCarousel from "../components/react/MarcasCarousel";
+---
+
+<MainLayout
+  title="CompaniesAll - Desarrollo y Mantenimiento de Sistemas"
+  description="Expertos en desarrollo y mantenimiento de sistemas para múltiples industrias. Soluciones tecnológicas a medida para tu empresa."
+>
+  <Hero
+    title="La Llama que Construye tu Éxito Digital"
+    description="Forjamos la tecnología que impulsa tu futuro. Desde software a medida hasta la gestión integral de tu infraestructura, convertimos la complejidad en poder. Tu visión, nuestra tecnología, crecimiento imparable."
+    buttonText="Subscríbete al futuro"
+    buttonLink="#suscripcion"
+    imageSrc="/images/llaka3.png"
+    imageAlt="Plataforma de IA Agéntica de CompaniesAll"
+  />
+  <section id="nosotros" class="section">
+    <About />
+  </section>
+
+  <section id="servicios" class="section">
+    <ServicesGrid />
+  </section>
+
+  <section id="contacto">
+    <Contacto client:load />
+  </section>
+
+  <section id="marcas" class="section">
+    <MarcasCarousel client:only="react" />
+  </section>
+</MainLayout>
+
+<style>
+  /*
+    Se han eliminado las variables CSS duplicadas del :root
+    y se han ajustado las reglas para usar las variables globales.
+  */
+
+  body {
+    /* Los estilos de tipografía y color de fondo ya están en el CSS global */
+  }
+
+  /*
+    Ajustamos los estilos de sección para que coincidan con la estructura global.
+  */
+  .section {
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  /* Eliminamos la lógica de `nth-child` ya que el hero principal se encargará de ello */
+  .section:nth-child(even) {
+    background-color: var(--light);
+  }
+
+  /* Eliminamos .container duplicado */
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    position: relative;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.05rem;
+    /* Usamos el gradiente global */
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .cta-section {
+    /* Los estilos de CTA se moverán al componente específico si existe */
+  }
+
+  .btn {
+    /* Los estilos de botones ahora provienen del CSS global */
+  }
+
+  /*
+    Ajustes del Hero para usar las clases y variables globales
+  */
+  .hero {
+    /* La mayoría de los estilos del hero ya están en el CSS global */
+    padding-top: 5rem; /* Ajuste para evitar solapamiento con el header fijo */
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 5.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    /* Usamos el gradiente global */
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-content p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--gray);
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  /*
+    Se han eliminado los estilos de botones duplicados.
+    Ahora usamos las clases globales `btn` y `btn-outline`.
+  */
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2.2rem;
+    }
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
     }
   }
 </style>
