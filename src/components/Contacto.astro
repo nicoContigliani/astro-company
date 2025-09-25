@@ -1,4 +1,4 @@
----
+<!-- ---
 // components/Contacto.astro
 ---
 
@@ -236,4 +236,250 @@
       });
     });
   });
-</script>
+</script> -->
+
+
+
+---
+// Aquí no necesitas importar React ni sus hooks.
+// Tampoco necesitas `react-share` ya que Astro no usa React por defecto.
+// La lógica de compartir se maneja con enlaces `<a>` estándar.
+
+const shareUrl = 'https://www.companiesall.com';
+const title = 'Soluciones Tecnológicas para tu Empresa | CompaniesAll';
+const platforms = [
+  { name: 'Facebook', icon: '/assets/icons/facebook.svg', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}` },
+  { name: 'Twitter', icon: '/assets/icons/twitter.svg', url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}` },
+  { name: 'LinkedIn', icon: '/assets/icons/linkedin.svg', url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(title)}` },
+  { name: 'WhatsApp', icon: '/assets/icons/whatsapp.svg', url: `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${encodeURIComponent(shareUrl)}` },
+  { name: 'Email', icon: '/assets/icons/email.svg', url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}` },
+];
+---
+
+<section id="contacto" class="mac-contact-section">
+  <div class="container">
+    <div class="contact-content">
+      <div class="contact-header">
+        <span class="contact-subtitle">Conectemos</span>
+        <h2 class="contact-title">Hablemos sobre tu próximo proyecto</h2>
+        <p class="contact-description">
+          ¿Tienes una visión o necesitas optimizar tus procesos?
+          Conectemos a través de nuestras redes.
+        </p>
+      </div>
+
+      <div class="mac-share-container">
+        <div class="share-buttons-grid">
+          {platforms.map(platform => (
+            <div class="share-button-wrapper">
+              <a href={platform.url} target="_blank" rel="noopener noreferrer" class="mac-share-button">
+                <div class="button-content">
+                  <img src={platform.icon} alt={`${platform.name} Icon`} width="42" height="42" />
+                  <span class="button-label">{platform.name}</span>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mac-contact-info">
+        <p class="info-text">O escríbenos directamente a:</p>
+        <a href="mailto:info@companiesall.com" class="mac-email-link">info@companiesall.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Variables CSS y estilos base idénticos a los del componente de React */
+  .mac-contact-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2%;
+    box-shadow: 5px 15px 16px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1%;
+    padding-bottom: 5%;
+  }
+  
+  .mac-contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .contact-header {
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  .contact-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0071e3;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin: 0 0 1rem 0;
+    background: linear-gradient(135deg, #2c3e50, #1a1a1a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .contact-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+  }
+  
+  .mac-share-container {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .share-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.2rem;
+    justify-content: center;
+  }
+
+  .share-button-wrapper {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 18px;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .share-button-wrapper:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .mac-share-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 14px;
+    padding: 1.2rem 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Asegura que el enlace no tenga subrayado */
+    color: inherit; /* Hereda el color del texto para evitar que sea azul */
+  }
+  
+  .button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .button-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #444;
+    transition: color 0.2s ease;
+  }
+  
+  .share-button-wrapper:hover .button-label {
+    color: #0071e3;
+  }
+  
+  .mac-contact-info {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  
+  .info-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mac-email-link {
+    font-size: 1.1rem;
+    color: #0071e3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .mac-email-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #0071e3;
+    transition: width 0.3s ease;
+  }
+  
+  .mac-email-link:hover::after {
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-title {
+      font-size: 2rem;
+    }
+    
+    .contact-description {
+      font-size: 1.1rem;
+    }
+    
+    .share-buttons-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mac-contact-section {
+      padding: 3rem 0;
+    }
+    
+    .share-buttons-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
