@@ -1,312 +1,3 @@
-<!-- ---
-// components/Nosotros.astro
----
-
-<section id="nosotros" class="nosotros-section">
-  <div class="waves-container">
-    <div class="wave -one"></div>
-    <div class="wave -two"></div>
-    <div class="wave -three"></div>
-  </div>
-
-  <div class="container">
-    <div class="section-header animate-fade-in">
-      <h2 class="section-title">Sobre Nosotros</h2>
-      <p class="section-subtitle">Transformamos ideas en soluciones digitales de vanguardia.</p>
-    </div>
-
-    <div class="nosotros-content">
-      <div class="nosotros-intro animate-up">
-        <p>En CompaniesAll, somos un equipo apasionado por la tecnología con la misión de impulsar el crecimiento de tu negocio. Con años de experiencia, ofrecemos soluciones de desarrollo y mantenimiento de sistemas a medida para optimizar tus procesos y ayudarte a alcanzar tus metas.</p>
-      </div>
-
-      <div class="vm-section animate-fade-in">
-        <div class="vm-card">
-          <div class="vm-icon">🚀</div>
-          <h3>Nuestra Misión y Visión</h3>
-          <p>Ser tu socio tecnológico de confianza, creando soluciones innovadoras que te mantengan a la vanguardia. Nos comprometemos a entregar calidad, eficiencia y transparencia en cada proyecto.</p>
-        </div>
-      </div>
-
-      <div class="valores-section animate-up">
-        <h3 style={{ color: "white" }}>Nuestros Valores</h3>
-        <div class="valores-grid">
-          <div class="valor-item">
-            <div class="valor-icon">💡</div>
-            <h4>Innovación</h4>
-            <p>Siempre buscando la próxima gran idea para tu proyecto.</p>
-          </div>
-          
-          <div class="valor-item">
-            <div class="valor-icon">🤝</div>
-            <h4>Colaboración</h4>
-            <p>Trabajamos de la mano contigo para asegurar el éxito.</p>
-          </div>
-          
-          <div class="valor-item">
-            <div class="valor-icon">⚡</div>
-            <h4>Excelencia</h4>
-            <p>Nos dedicamos a la calidad y la mejora continua.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-  .nosotros-section {
-    padding: 2rem 0;
-    background: linear-gradient(
-      135deg,
-      rgba(240, 248, 255, 1) 0%,
-      rgba(255, 255, 255, 0.628) 100%
-    );
-
-    background: #0f0c29;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-    position: relative;
-    overflow: hidden;
-    border-radius: 1%;
-    box-shadow: 5px 15px 16px rgba(0, 0, 0, 0.1);
-    padding-bottom: 1%;
-    margin-bottom: 2%;
-  }
-
-  .container {
-    position: relative;
-    z-index: 2;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
-  }
-  .valores-section animate-up{
-    color: #ffffff;
-
-  }
-
-  .section-subtitle {
-    font-size: 1.1rem;
-    color: #c6c6c6;
-  }
-  
-  .nosotros-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 4rem;
-  }
-  
-  .nosotros-intro p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    color: #c6c6c6;
-  }
-
-  .vm-section {
-    max-width: 600px;
-    margin: 0 auto 4rem;
-  }
-  
-  .vm-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .vm-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-  }
-  
-  .vm-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .vm-card h3 {
-    color: #007bff;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  
-  .vm-card p {
-    color: #666;
-    line-height: 1.6;
-  }
-  
-  .valores-section {
-    margin-top: 4rem;
-    
-  }
-  
-  .valores-section h3 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2.5rem;
-    color: #333;
-  }
-  
-  .valores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-  
-  .valor-item {
-    text-align: center;
-    padding: 2rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .valor-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-  }
-  
-  .valor-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.2rem;
-  }
-  
-  .valor-item h4 {
-    color: #007bff;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-  }
-  
-  .valor-item p {
-    color: #666;
-    line-height: 1.6;
-  }
-  
-  /* --- Estilos de las ondas (Animación) --- */
-  .waves-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .wave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 0.1;
-    border-radius: 40%;
-    transform-origin: 50% 50%;
-    animation: sway 30s infinite ease-in-out;
-  }
-
-  .wave.-two {
-    animation: sway 35s infinite ease-in-out;
-    opacity: 0.08;
-    background-color: rgba(179, 217, 255, 0.5);
-    transform: rotate(20deg);
-  }
-
-  .wave.-three {
-    animation: sway 40s infinite ease-in-out;
-    opacity: 0.05;
-    background-color: rgba(135, 206, 250, 0.5);
-    transform: rotate(40deg);
-  }
-
-  @keyframes sway {
-    0% {
-      transform: rotate(0deg) scale(1);
-    }
-    50% {
-      transform: rotate(5deg) scale(1.01);
-    }
-    100% {
-      transform: rotate(0deg) scale(1);
-    }
-  }
-
-  /* --- Animaciones para la carga de los elementos --- */
-  .animate-up, .animate-fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .animate-up.visible, .animate-fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .animate-up.visible .valor-item:nth-child(1) { transition-delay: 0.1s; }
-  .animate-up.visible .valor-item:nth-child(2) { transition-delay: 0.2s; }
-  .animate-up.visible .valor-item:nth-child(3) { transition-delay: 0.3s; }
-  .animate-up.visible .valor-item {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  @media (max-width: 768px) {
-    .nosotros-section {
-      padding: 3rem 0;
-    }
-    
-    .valores-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .vm-card, .valor-item {
-      padding: 1.5rem;
-    }
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    const animatedElements = document.querySelectorAll(".animate-up, .animate-fade-in");
-    animatedElements.forEach(el => observer.observe(el));
-  });
-</script> -->
-
-
-
 ---
 // components/Nosotros.astro
 ---
@@ -316,43 +7,44 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
     <div class="wave -one"></div>
     <div class="wave -two"></div>
     <div class="wave -three"></div>
+    <div class="wave -four"></div>
   </div>
 
   <div class="container">
-    <div class="section-header" data-animate="fade-in">
+    <div class="section-header" data-animate="fade-in-up">
       <h2 class="section-title">Sobre Nosotros</h2>
       <p class="section-subtitle">Transformamos ideas en soluciones digitales de vanguardia.</p>
     </div>
 
     <div class="nosotros-content">
-      <div class="nosotros-intro" data-animate="up">
-        <p>En CompaniesAll, somos un equipo apasionado por la tecnología con la misión de impulsar el crecimiento de tu negocio. Con años de experiencia, ofrecemos soluciones de desarrollo y mantenimiento de sistemas a medida para optimizar tus procesos y ayudarte a alcanzar tus metas.</p>
+      <div class="nosotros-intro" data-animate="fade-in-up" data-delay="100">
+        <p>En LlakaScript, somos un equipo apasionado por la tecnología con la misión de impulsar el crecimiento de tu negocio. Con años de experiencia, ofrecemos soluciones de desarrollo y mantenimiento de sistemas a medida para optimizar tus procesos y ayudarte a alcanzar tus metas.</p>
       </div>
 
-      <div class="vm-section" data-animate="fade-in">
-        <div class="vm-card">
+      <div class="vm-section">
+        <div class="vm-card" data-animate="fade-in-scale" data-delay="300">
           <div class="vm-icon" aria-hidden="true">🚀</div>
           <h3>Nuestra Misión y Visión</h3>
           <p>Ser tu socio tecnológico de confianza, creando soluciones innovadoras que te mantengan a la vanguardia. Nos comprometemos a entregar calidad, eficiencia y transparencia en cada proyecto.</p>
         </div>
       </div>
 
-      <div class="valores-section" data-animate="up">
-        <h3 class="valores-title">Nuestros Valores</h3>
+      <div class="valores-section">
+        <h3 class="valores-title" data-animate="fade-in-up" data-delay="500">Nuestros Valores</h3>
         <div class="valores-grid">
-          <div class="valor-item">
+          <div class="valor-item" data-animate="fade-in-scale" data-delay="600">
             <div class="valor-icon" aria-hidden="true">💡</div>
             <h4>Innovación</h4>
             <p>Siempre buscando la próxima gran idea para tu proyecto.</p>
           </div>
           
-          <div class="valor-item">
+          <div class="valor-item" data-animate="fade-in-scale" data-delay="700">
             <div class="valor-icon" aria-hidden="true">🤝</div>
             <h4>Colaboración</h4>
             <p>Trabajamos de la mano contigo para asegurar el éxito.</p>
           </div>
           
-          <div class="valor-item">
+          <div class="valor-item" data-animate="fade-in-scale" data-delay="800">
             <div class="valor-icon" aria-hidden="true">⚡</div>
             <h4>Excelencia</h4>
             <p>Nos dedicamos a la calidad y la mejora continua.</p>
@@ -367,6 +59,11 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
   /* Variables CSS optimizadas */
   :root {
     --gradient-bg: linear-gradient(to top, #24243e, #302b63, #0f0c29);
+    --wave-color-1: rgba(255, 255, 255, 0.05);
+    --wave-color-2: rgba(179, 217, 255, 0.08);
+    --wave-color-3: rgba(135, 206, 250, 0.07);
+    --wave-color-4: rgba(255, 255, 255, 0.03);
+
     --text-primary: #ffffff;
     --text-secondary: #c6c6c6;
     --text-tertiary: #666;
@@ -383,7 +80,6 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
   .nosotros-section {
     padding: var(--section-padding) 0;
     background: var(--gradient-bg);
-    
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -520,7 +216,7 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
     font-size: clamp(0.9rem, 2vw, 1rem);
   }
   
-  /* Animación de ondas optimizada */
+  /* Animación de ondas refinada y con más capas */
   .waves-container {
     position: absolute;
     top: 0;
@@ -530,45 +226,69 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
+    filter: blur(5px);
   }
 
   .wave {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 0.1;
+    bottom: 0;
+    left: -20%;
+    width: 140%;
+    height: 100%;
+    background-color: var(--wave-color-1);
     border-radius: 40%;
-    transform-origin: 50% 50%;
-    animation: sway 30s infinite ease-in-out;
+    transform-origin: 50% 100%;
     will-change: transform;
+    animation: waveMovement 30s infinite ease-in-out alternate;
   }
 
   .wave.-two {
-    animation: sway 35s infinite ease-in-out;
-    opacity: 0.08;
-    background-color: rgba(179, 217, 255, 0.5);
-    transform: rotate(20deg);
+    background-color: var(--wave-color-2);
+    animation-duration: 35s;
+    animation-delay: -5s;
+    transform: rotate(20deg) scale(1.05);
   }
 
   .wave.-three {
-    animation: sway 40s infinite ease-in-out;
-    opacity: 0.05;
-    background-color: rgba(135, 206, 250, 0.5);
-    transform: rotate(40deg);
+    background-color: var(--wave-color-3);
+    animation-duration: 40s;
+    animation-delay: -10s;
+    transform: rotate(40deg) scale(1.1);
+  }
+  
+  .wave.-four {
+    background-color: var(--wave-color-4);
+    animation-duration: 45s;
+    animation-delay: -15s;
+    transform: rotate(60deg) scale(1.15);
   }
 
-  @keyframes sway {
+  @keyframes waveMovement {
     0%, 100% {
-      transform: rotate(0deg) scale(1);
+      transform: rotate(var(--wave-rotate, 0deg)) scale(var(--wave-scale, 1));
     }
     50% {
-      transform: rotate(5deg) scale(1.01);
+      transform: rotate(calc(var(--wave-rotate, 0deg) + 5deg)) scale(calc(var(--wave-scale, 1) + 0.02));
     }
   }
 
+  .wave.-one {
+    --wave-rotate: 0deg;
+    --wave-scale: 1;
+  }
+  .wave.-two {
+    --wave-rotate: 20deg;
+    --wave-scale: 1.05;
+  }
+  .wave.-three {
+    --wave-rotate: 40deg;
+    --wave-scale: 1.1;
+  }
+  .wave.-four {
+    --wave-rotate: 60deg;
+    --wave-scale: 1.15;
+  }
+  
   /* Animaciones optimizadas con prefers-reduced-motion */
   @media (prefers-reduced-motion: no-preference) {
     [data-animate] {
@@ -579,32 +299,21 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
         transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    [data-animate="fade-in"] {
-      transform: none;
+    [data-animate="fade-in-up"] {
+        transform: translateY(30px);
     }
-    
+
+    [data-animate="fade-in-scale"] {
+        transform: scale(0.8);
+    }
+
     [data-animate].animated {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     
-    .valores-grid [data-animate].animated .valor-item {
-      animation: slideUp 0.6s ease-out forwards;
-    }
-    
-    .valores-grid [data-animate].animated .valor-item:nth-child(1) { animation-delay: 0.1s; }
-    .valores-grid [data-animate].animated .valor-item:nth-child(2) { animation-delay: 0.2s; }
-    .valores-grid [data-animate].animated .valor-item:nth-child(3) { animation-delay: 0.3s; }
-    
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    [data-animate].animated[data-delay] {
+      transition-delay: var(--delay);
     }
   }
 
@@ -612,6 +321,7 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
     .wave {
       animation: none;
       opacity: 0.05;
+      transform: none;
     }
     
     .vm-card,
@@ -651,53 +361,42 @@ background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ 
       display: none; /* Mejorar performance en móviles */
     }
   }
-
-  /* Mejoras de accesibilidad */
-  @media (prefers-contrast: high) {
-    .vm-card,
-    .valor-item {
-      border: 2px solid var(--accent-color);
-    }
-  }
 </style>
 
 <script>
-  // Script optimizado para performance
+  // Script optimizado para performance y animaciones
   document.addEventListener('DOMContentLoaded', () => {
     'use strict';
     
-    // Configuración del Intersection Observer
     const observerOptions = {
       root: null,
-      rootMargin: '50px', // Carga antes de que sea visible
-      threshold: 0.15 // Menos sensible para mejor performance
+      rootMargin: '50px',
+      threshold: 0.15
     };
     
     let observer:any;
     
-    // Verificar si el usuario prefiere movimiento reducido
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (!prefersReducedMotion) {
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+      observer = new IntersectionObserver((entries:any) => {
+        entries.forEach((entry:any) => {
           if (entry.isIntersecting) {
+            const delay:any = entry.target.dataset.delay || '0ms';
+            entry.target.style.setProperty('--delay', `${delay}ms`);
             entry.target.classList.add('animated');
             observer.unobserve(entry.target);
           }
         });
       }, observerOptions);
       
-      // Observar elementos animados
       const animatedElements = document.querySelectorAll('[data-animate]');
       animatedElements.forEach(el => observer.observe(el));
     } else {
-      // Si prefiere movimiento reducido, mostrar todo inmediatamente
       const animatedElements = document.querySelectorAll('[data-animate]');
       animatedElements.forEach(el => el.classList.add('animated'));
     }
     
-    // Cleanup para evitar memory leaks
     window.addEventListener('beforeunload', () => {
       if (observer) {
         observer.disconnect();

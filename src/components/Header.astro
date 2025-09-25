@@ -1,5 +1,7 @@
 ---
 // components/Header.astro
+import { Image } from 'astro:assets';
+import llakaScriptLogo from '../../public/images/llakascript.png';
 interface Props {
   title: string;
   subtitle: string;
@@ -23,8 +25,8 @@ const {
   <div class="container">
     <nav class="nav" aria-label="Navegación principal">
       <a href="/" class="logo" aria-label="LlakaScript - Inicio">
-        <img
-          src="/images/llakascript.png"
+        <Image
+          src={llakaScriptLogo}
           alt="LlakaScript Logo"
           class="logo-image"
           width="32"

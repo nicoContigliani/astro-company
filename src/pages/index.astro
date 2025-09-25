@@ -1,11 +1,12 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/Hero.astro";
-import IndustriesSection from "../components/IndustriesSection.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import About from "../components/About.astro";
 import Contacto from "../components/react/Contacto";
-import MarcasCarousel from "../components/react/MarcasCarousel";
+import MarcasCarousel from "../components/react/MarcasCarousel"
+import llakascript from '../../public/images/llaka3.png'; // 👈 Importa la imagen aquí
+
 ---
 
 <MainLayout
@@ -17,7 +18,7 @@ import MarcasCarousel from "../components/react/MarcasCarousel";
     description="Forjamos la tecnología que impulsa tu futuro. Desde software a medida hasta la gestión integral de tu infraestructura, convertimos la complejidad en poder. Tu visión, nuestra tecnología, crecimiento imparable."
     buttonText="Subscríbete al futuro"
     buttonLink="#suscripcion"
-    imageSrc="/images/llaka3.png"
+    imageSrc={llakascript}
     imageAlt="Plataforma de IA Agéntica de CompaniesAll"
   />
   

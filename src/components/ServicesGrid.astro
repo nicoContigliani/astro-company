@@ -1,222 +1,3 @@
-<!-- ---
-// components/ServicesGrid.astro
-import type { ReactNode } from 'react';
-import { useState } from 'react';
-
-interface Service {
-  title: string;
-  description: string;
-  icon: ReactNode;
-  link: string;
-}
-
-const services: Service[] = [
-  {
-    title: "Desarrollo Web a Medida",
-    description: "Convertimos tus ideas en experiencias digitales. Creamos aplicaciones web modernas, rápidas y escalables, enfocadas en la usabilidad y la conexión con tus usuarios.",
-    icon: "💻",
-    link: "/servicios/desarrollo-web"
-  },
-  {
-    title: "Soporte y Gestión de Sistemas",
-    description: "Garantizamos la continuidad de tu operación. Nos anticipamos a los problemas y optimizamos tus sistemas con un mantenimiento proactivo y soporte experto para que siempre estén eficientes y seguros.",
-    icon: "🔧",
-    link: "/servicios/mantenimiento-sistemas"
-  },
-  {
-    title: "Arquitectura de Infraestructura",
-    description: "Diseñamos la base tecnológica para tu crecimiento. Construimos y optimizamos infraestructuras eficientes y seguras que te preparan para escalar y competir en el futuro.",
-    icon: "🏗️",
-    link: "/servicios/infraestructura-tecnologica"
-  },
-  {
-    title: "Asesoría en Transformación Digital",
-    description: "Te guiamos en la optimización de procesos y la adopción de tecnologías clave. Te ofrecemos una hoja de ruta clara para que tu negocio sea más eficiente, innovador y competitivo.",
-    icon: "📊",
-    link: "/servicios/consultoria-it"
-  },
-  {
-    title: "Capacitación y Cursos IT",
-    description: "Invertimos en tu equipo para potenciar tu negocio. Ofrecemos cursos y programas de capacitación personalizados en las últimas tecnologías para que tu talento se mantenga a la vanguardia.",
-    icon: "🎓",
-    link: "/servicios/capacitacion-it"
-  }
-];
----
-
-<div class="services-container">
-  <div class="section-header">
-    <h2 class="section-title">Nuestros Servicios</h2>
-    <p class="section-subtitle">Soluciones tecnológicas integrales para potenciar tu negocio</p>
-  </div>
-  
-  <div class="services-grid">
-    {services.map((service, index) => (
-      <a href={service.link} class="service-card fade-in" style={`animation-delay: ${index * 0.1}s`}>
-        <div class="service-icon">{service.icon}</div>
-        <h3>{service.title}</h3>
-        <p>{service.description}</p>
-        <span class="service-link">Descubrir más →</span>
-      </a>
-    ))}
-  </div>
-</div>
-
-<style>
-  .services-container {
-    /* max-width: 1200px; */
-    margin: 0 auto;
-    padding: 1rem 1rem;
-      background: linear-gradient(
-      135deg,
-      rgba(240, 248, 255, 1) 0%,
-      rgba(255, 255, 255, 0.628) 100%
-    );
-
-    background: #0f0c29;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .section-subtitle {
-    font-size: 1.2rem;
-    color: #8e8e93;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .service-card {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(0, 122, 255, 0.1);
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  }
-
-  .service-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .service-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
-    transition: all 0.3s ease;
-  }
-
-  .service-card:hover .service-icon {
-    transform: scale(1.1);
-  }
-
-  .service-card h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #1c1c1e;
-  }
-
-  .service-card p {
-    color: #8e8e93;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-    line-height: 1.6;
-  }
-
-  .service-link {
-    color: #007aff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .service-card:hover .service-link {
-    color: #0056b3;
-    transform: translateX(5px);
-  }
-
-  /* Animaciones */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .fade-in {
-    animation: fadeIn 0.6s ease forwards;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .services-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .section-title {
-      font-size: 2.2rem;
-    }
-    
-    .services-container {
-      padding: 3rem 1rem;
-    }
-  }
-</style> -->
-
-
-
 ---
 // components/ServicesGrid.astro
 import type { ReactNode } from 'react';
@@ -264,21 +45,27 @@ const services: Service[] = [
 ---
 
 <section id="services" class="services-section">
-  <div class="waves-container">
+  <div class="waves-container" aria-hidden="true">
     <div class="wave -one"></div>
     <div class="wave -two"></div>
     <div class="wave -three"></div>
+    <div class="wave -four"></div>
   </div>
 
   <div class="container">
-    <div class="section-header animate-fade-in">
-      <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="section-header" data-animate="fade-in-up">
+      <h2 class="section-title"style={{ color: "white" }} >Nuestros Servicios</h2>
       <p class="section-subtitle">Soluciones tecnológicas integrales para potenciar tu negocio</p>
     </div>
 
     <div class="services-grid">
       {services.map((service, index) => (
-        <a href={service.link} class="service-card animate-up" style={`animation-delay: ${index * 0.1}s`}>
+        <a 
+          href={service.link} 
+          class="service-card" 
+          data-animate="fade-in-scale" 
+          data-delay={index * 100 + 300}
+        >
           <div class="service-icon">{service.icon}</div>
           <h3>{service.title}</h3>
           <p>{service.description}</p>
@@ -290,53 +77,82 @@ const services: Service[] = [
 </section>
 
 <style>
-  .services-section {
-    padding: 2rem 2rem;
-    background: #0f0c29;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* Variables CSS unificadas para consistencia */
+  :root {
+    --gradient-bg-services: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+    --wave-color-1: rgba(255, 255, 255, 0.05);
+    --wave-color-2: rgba(179, 217, 255, 0.08);
+    --wave-color-3: rgba(135, 206, 250, 0.07);
+    --wave-color-4: rgba(255, 255, 255, 0.03);
 
+    --text-primary: #ffffff;
+    --text-secondary: #c6c6c6;
+    --text-card-primary: #1c1c1e;
+    --text-card-secondary: #8e8e93;
+    --card-bg: #ffffff;
+    --accent-color: #007bff;
+    --accent-hover: #0056b3;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --radius: 20px;
+    --transition: all 0.3s ease;
+    --section-padding: clamp(2rem, 6vw, 4rem);
+  }
+
+  /* Reset y estilos base */
+  .services-section {
+    padding: var(--section-padding) 0;
+    background: var(--gradient-bg-services);
     position: relative;
     overflow: hidden;
-    border-radius: 2%;
-    box-shadow: 5px 15px 16px rgba(0, 0, 0, 0.1);
-    padding-bottom: 1%;
-    margin-bottom: 1%;
+    isolation: isolate;
   }
 
   .container {
     position: relative;
     z-index: 2;
+    max-width: min(1200px, 90vw);
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem);
   }
 
+  /* Header section */
   .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
   }
 
   .section-title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem);
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color:white
   }
 
   .section-subtitle {
-    font-size: 1.1rem;
-    color: #c6c6c6;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
   }
 
+  /* Grid de servicios */
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1.5rem, 3vw, 2rem);
+    justify-content: center;
   }
 
   .service-card {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    will-change: transform, box-shadow;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -346,34 +162,17 @@ background: linear-gradient(to left, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/
     text-decoration: none;
     color: inherit;
   }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
+  
   .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  }
-
-  .service-card:hover::before {
-    transform: scaleX(1);
+    box-shadow: var(--shadow-medium);
   }
 
   .service-icon {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 1.5rem;
     display: inline-block;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .service-card:hover .service-icon {
@@ -381,124 +180,204 @@ background: linear-gradient(to left, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/
   }
 
   .service-card h3 {
-    font-size: 1.4rem;
+    font-size: clamp(1.3rem, 3vw, 1.4rem);
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #1c1c1e;
+    color: var(--text-card-primary);
   }
 
   .service-card p {
-    color: #8e8e93;
+    color: var(--text-card-secondary);
     margin-bottom: 2rem;
     flex-grow: 1;
     line-height: 1.6;
+    font-size: clamp(1rem, 2vw, 1.1rem);
   }
 
   .service-link {
-    color: #007aff;
+    color: var(--accent-color);
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     display: inline-flex;
     align-items: center;
+    font-size: clamp(0.9rem, 2vw, 1rem);
   }
-
+  
   .service-card:hover .service-link {
-    color: #0056b3;
+    color: var(--accent-hover);
     transform: translateX(5px);
   }
 
-  /* --- Estilos de las ondas (Animación) --- */
+  /* Animación de ondas (efecto de reflejo) */
   .waves-container {
     position: absolute;
-    top: 0;
+    bottom: 0; /* Cambio clave: alinea las ondas abajo */
     left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
+    filter: blur(5px);
+    transform: scaleY(-1); /* Reflejo vertical */
   }
 
   .wave {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background-color: rgba(255, 255, 255, 0.5);
-    opacity: 0.1;
+    bottom: 0;
+    left: -20%;
+    width: 140%;
+    height: 100%;
+    background-color: var(--wave-color-1);
     border-radius: 40%;
-    transform-origin: 50% 50%;
-    animation: sway 30s infinite ease-in-out;
+    transform-origin: 50% 100%;
+    will-change: transform;
+    animation: waveMovement 30s infinite ease-in-out alternate;
   }
 
   .wave.-two {
-    animation: sway 35s infinite ease-in-out;
-    opacity: 0.08;
-    background-color: rgba(179, 217, 255, 0.5);
-    transform: rotate(20deg);
+    background-color: var(--wave-color-2);
+    animation-duration: 35s;
+    animation-delay: -5s;
+    transform: rotate(20deg) scale(1.05);
   }
 
   .wave.-three {
-    animation: sway 40s infinite ease-in-out;
-    opacity: 0.05;
-    background-color: rgba(135, 206, 250, 0.5);
-    transform: rotate(40deg);
-  }
-
-  @keyframes sway {
-    0% {
-      transform: rotate(0deg) scale(1);
-    }
-    50% {
-      transform: rotate(5deg) scale(1.01);
-    }
-    100% {
-      transform: rotate(0deg) scale(1);
-    }
-  }
-
-  /* --- Animaciones para la carga de los elementos --- */
-  .animate-up, .animate-fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .animate-up.visible, .animate-fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+    background-color: var(--wave-color-3);
+    animation-duration: 40s;
+    animation-delay: -10s;
+    transform: rotate(40deg) scale(1.1);
   }
   
+  .wave.-four {
+    background-color: var(--wave-color-4);
+    animation-duration: 45s;
+    animation-delay: -15s;
+    transform: rotate(60deg) scale(1.15);
+  }
+  
+  @keyframes waveMovement {
+    0%, 100% {
+      transform: rotate(var(--wave-rotate, 0deg)) scale(var(--wave-scale, 1));
+    }
+    50% {
+      transform: rotate(calc(var(--wave-rotate, 0deg) + 5deg)) scale(calc(var(--wave-scale, 1) + 0.02));
+    }
+  }
+
+  .wave.-one { --wave-rotate: 0deg; --wave-scale: 1; }
+  .wave.-two { --wave-rotate: 20deg; --wave-scale: 1.05; }
+  .wave.-three { --wave-rotate: 40deg; --wave-scale: 1.1; }
+  .wave.-four { --wave-rotate: 60deg; --wave-scale: 1.15; }
+
+  /* Animaciones optimizadas con prefers-reduced-motion */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-animate] {
+      opacity: 0;
+      transition: 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    [data-animate="fade-in-up"] {
+      transform: translateY(30px);
+    }
+    
+    [data-animate="fade-in-scale"] {
+      transform: scale(0.8);
+    }
+
+    [data-animate].animated {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    [data-animate].animated[data-delay] {
+      transition-delay: var(--delay);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave {
+      animation: none;
+      opacity: 0.05;
+      transform: none;
+    }
+    
+    .service-card {
+      transition: none;
+    }
+  }
+
+  /* Media Queries */
   @media (max-width: 768px) {
     .services-section {
-      padding: 3rem 0;
+      padding: clamp(1.5rem, 4vw, 2rem) 0;
     }
     
     .services-grid {
       grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      padding: 1.5rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+    
+    .service-card {
+      padding: 1.25rem;
+    }
+    
+    .waves-container {
+      display: none;
     }
   }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
+    'use strict';
+    
     const observerOptions = {
       root: null,
-      rootMargin: "0px",
-      threshold: 0.2
+      rootMargin: '50px',
+      threshold: 0.15
     };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    const animatedElements = document.querySelectorAll(".animate-up, .animate-fade-in");
-    animatedElements.forEach(el => observer.observe(el));
+    
+    let observer:any;
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!prefersReducedMotion) {
+      observer = new IntersectionObserver((entries:any) => {
+        entries.forEach((entry:any) => {
+          if (entry.isIntersecting) {
+            const delay:any = entry.target.dataset.delay || '0ms';
+            entry.target.style.setProperty('--delay', `${delay}ms`);
+            entry.target.classList.add('animated');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      animatedElements.forEach(el => observer.observe(el));
+    } else {
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      animatedElements.forEach(el => el.classList.add('animated'));
+    }
+    
+    window.addEventListener('beforeunload', () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    });
   });
 </script>
