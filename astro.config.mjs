@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
 
 export default defineConfig({
-  site: 'https://companiesall.com',
+  site: 'https://LlakaScript.com',
   integrations: [react(), sitemap()],
   output: 'static',
   adapter: netlify()

@@ -16,8 +16,8 @@ import {
 } from 'react-share';
 
 const Contacto = () => {
-    const shareUrl = 'https://www.companiesall.com';
-    const title = 'Soluciones Tecnológicas para tu Empresa | CompaniesAll';
+    const shareUrl = 'https://www.LlakaScript.com';
+    const title = 'Soluciones Tecnológicas para tu Empresa | LlakaScript';
 
     return (
         <section id="contacto" className="mac-contact-section">
@@ -104,7 +104,7 @@ const Contacto = () => {
 
                     <div className="mac-contact-info">
                         <p className="info-text">O escríbenos directamente a:</p>
-                        <a href="mailto:info@companiesall.com" className="mac-email-link">info@companiesall.com</a>
+                        <a href="mailto:info@LlakaScript.com" className="mac-email-link">info@LlakaScript.com</a>
                     </div>
                 </div>
             </div>
