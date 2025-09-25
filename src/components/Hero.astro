@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 // Definimos las propiedades que acepta el componente
 interface Props {
@@ -12,15 +12,16 @@ interface Props {
 }
 
 // Extraemos las propiedades
-const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro.props;
+const { title, description, buttonText, buttonLink, imageSrc, imageAlt } =
+  Astro.props;
 ---
 
 <section class="hero-section">
-  <div class="background-blobs">
-    <div class="blob blob-one"></div>
-    <div class="blob blob-two"></div>
-    <div class="blob blob-three"></div>
-    <div class="blob blob-four"></div>
+  <div class="waves-container">
+    <div class="wave -one"></div>
+    <div class="wave -two"></div>
+    <div class="wave -three"></div>
+    <div class="wave -four"></div>
   </div>
 
   <div class="hero-container">
@@ -46,23 +47,37 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const imageFrame: any = document.getElementById('image-frame-3d') as HTMLElement | null;
-    const heroImageContent = imageFrame?.closest('.hero-image-content') as HTMLElement | null;
-    
+  document.addEventListener("DOMContentLoaded", () => {
+    const imageFrame: any = document.getElementById(
+      "image-frame-3d",
+    ) as HTMLElement | null;
+    const heroImageContent = imageFrame?.closest(
+      ".hero-image-content",
+    ) as HTMLElement | null;
+
     if (!imageFrame || !heroImageContent) return;
 
-    const outerRing = imageFrame.querySelector('.outer-ring') as HTMLElement | null;
-    const middleRing = imageFrame.querySelector('.middle-ring') as HTMLElement | null;
-    const innerCircle = imageFrame.querySelector('.inner-circle') as HTMLElement | null;
-    const heroMainImage = imageFrame.querySelector('.hero-main-image') as HTMLElement | null;
+    const outerRing = imageFrame.querySelector(
+      ".outer-ring",
+    ) as HTMLElement | null;
+    const middleRing = imageFrame.querySelector(
+      ".middle-ring",
+    ) as HTMLElement | null;
+    const innerCircle = imageFrame.querySelector(
+      ".inner-circle",
+    ) as HTMLElement | null;
+    const heroMainImage = imageFrame.querySelector(
+      ".hero-main-image",
+    ) as HTMLElement | null;
 
-    const isMobile = window.matchMedia('(max-width: 992px)').matches;
-    
+    const isMobile = window.matchMedia("(max-width: 992px)").matches;
+
     if (isMobile) {
-      [imageFrame, outerRing, middleRing, innerCircle, heroMainImage].forEach(el => {
-        if (el) el.style.transition = 'none';
-      });
+      [imageFrame, outerRing, middleRing, innerCircle, heroMainImage].forEach(
+        (el) => {
+          if (el) el.style.transition = "none";
+        },
+      );
       return;
     }
 
@@ -89,7 +104,7 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
       const centerY = containerRect.top + containerRect.height / 2;
       const deltaX = mouseX - centerX;
       const deltaY = mouseY - centerY;
-      
+
       const rotateY = (deltaX / containerRect.width) * 40;
       const rotateX = (deltaY / containerRect.height) * -40;
 
@@ -99,10 +114,14 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
         rotateY(${rotateY * 0.1}deg)
       `;
 
-      if (outerRing) outerRing.style.transform = `translateZ(-30px) translateX(${deltaX * -0.01 * intensity}px) translateY(${deltaY * -0.01 * intensity}px)`;
-      if (middleRing) middleRing.style.transform = `translateZ(0px) translateX(${deltaX * 0.02 * intensity}px) translateY(${deltaY * 0.02 * intensity}px)`;
-      if (innerCircle) innerCircle.style.transform = `translateZ(30px) translateX(${deltaX * 0.04 * intensity}px) translateY(${deltaY * 0.04 * intensity}px)`;
-      if (heroMainImage) heroMainImage.style.transform = `
+      if (outerRing)
+        outerRing.style.transform = `translateZ(-30px) translateX(${deltaX * -0.01 * intensity}px) translateY(${deltaY * -0.01 * intensity}px)`;
+      if (middleRing)
+        middleRing.style.transform = `translateZ(0px) translateX(${deltaX * 0.02 * intensity}px) translateY(${deltaY * 0.02 * intensity}px)`;
+      if (innerCircle)
+        innerCircle.style.transform = `translateZ(30px) translateX(${deltaX * 0.04 * intensity}px) translateY(${deltaY * 0.04 * intensity}px)`;
+      if (heroMainImage)
+        heroMainImage.style.transform = `
         scale(1.05)
         translateZ(50px)
         translateX(${deltaX * 0.08 * intensity}px)
@@ -110,16 +129,20 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
         rotateY(${-rotateY * 0.05}deg)
         rotateX(${rotateX * 0.05}deg)
       `;
-      
+
       requestAnimationFrame(update);
     }
 
     function resetTransformations() {
       imageFrame.style.transform = `perspective(1500px) rotateX(0deg) rotateY(0deg)`;
-      if (outerRing) outerRing.style.transform = `translateZ(-30px) translateX(0) translateY(0)`;
-      if (middleRing) middleRing.style.transform = `translateZ(0px) translateX(0) translateY(0)`;
-      if (innerCircle) innerCircle.style.transform = `translateZ(30px) translateX(0) translateY(0)`;
-      if (heroMainImage) heroMainImage.style.transform = `
+      if (outerRing)
+        outerRing.style.transform = `translateZ(-30px) translateX(0) translateY(0)`;
+      if (middleRing)
+        middleRing.style.transform = `translateZ(0px) translateX(0) translateY(0)`;
+      if (innerCircle)
+        innerCircle.style.transform = `translateZ(30px) translateX(0) translateY(0)`;
+      if (heroMainImage)
+        heroMainImage.style.transform = `
         scale(1.05)
         translateZ(50px)
         translateX(0)
@@ -129,9 +152,9 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
       `;
     }
 
-    heroImageContent.addEventListener('mousemove', handleMouseMove);
-    heroImageContent.addEventListener('mouseleave', resetTransformations);
-    
+    heroImageContent.addEventListener("mousemove", handleMouseMove);
+    heroImageContent.addEventListener("mouseleave", resetTransformations);
+
     requestAnimationFrame(update);
     resetTransformations();
   });
@@ -194,8 +217,8 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     position: relative;
     overflow: hidden;
     background: linear-gradient(to top, #24243e, #302b63, #0f0c29);
-    
-    padding: 1rem 2rem ;
+
+    padding: 1rem 2rem;
     /* padding-top: 1%; */
   }
 
@@ -224,7 +247,11 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--title-gradient-start), var(--title-gradient-end));
+    background: linear-gradient(
+      135deg,
+      var(--title-gradient-start),
+      var(--title-gradient-end)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -241,7 +268,11 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
   .hero-button {
     display: inline-flex;
     padding: 0.875rem 2rem;
-    background: linear-gradient(135deg, var(--button-bg-start), var(--button-bg-end));
+    background: linear-gradient(
+      135deg,
+      var(--button-bg-start),
+      var(--button-bg-end)
+    );
     color: var(--white);
     text-decoration: none;
     font-weight: 600;
@@ -254,7 +285,11 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
   }
 
   .hero-button:hover {
-    background: linear-gradient(135deg, var(--button-hover-start), var(--button-hover-end));
+    background: linear-gradient(
+      135deg,
+      var(--button-hover-start),
+      var(--button-hover-end)
+    );
     transform: translateY(-2px) scale(1.01);
     box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
   }
@@ -305,24 +340,31 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     border-radius: 50%;
     background: transparent;
     z-index: 1;
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.7), 0 0 20px 8px rgba(255, 165, 0, 0.1);
+    box-shadow:
+      0 0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 20px 8px rgba(255, 165, 0, 0.1);
     transform: translateZ(-30px);
   }
 
   .outer-ring::before,
   .outer-ring::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle at center, var(--energy-wave-color-start) 0%, var(--energy-wave-color-end) 70%);
+    background: radial-gradient(
+      circle at center,
+      var(--energy-wave-color-start) 0%,
+      var(--energy-wave-color-end) 70%
+    );
     box-shadow: 0 0 10px 5px var(--energy-shadow-color-start);
     transform: scale(0.5) translateZ(-10px);
     opacity: 0;
-    animation: pulse-energy-wave 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    animation: pulse-energy-wave 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      infinite;
   }
 
   .outer-ring::after {
@@ -333,12 +375,16 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     0% {
       transform: scale(0.4) translateZ(-10px);
       opacity: 0.8;
-      box-shadow: 0 0 15px 8px var(--energy-shadow-color-start), 0 0 30px 15px var(--energy-shadow-color-middle);
+      box-shadow:
+        0 0 15px 8px var(--energy-shadow-color-start),
+        0 0 30px 15px var(--energy-shadow-color-middle);
     }
     50% {
       transform: scale(1.1) translateZ(0px);
       opacity: 0.4;
-      box-shadow: 0 0 25px 12px var(--energy-shadow-color-middle), 0 0 50px 25px var(--energy-shadow-color-end);
+      box-shadow:
+        0 0 25px 12px var(--energy-shadow-color-middle),
+        0 0 50px 25px var(--energy-shadow-color-end);
     }
     100% {
       transform: scale(1.6) translateZ(10px);
@@ -353,10 +399,18 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     width: calc(100% - 40px);
     height: calc(100% - 40px);
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--middle-ring-bg-start), var(--middle-ring-bg-end));
+    background: linear-gradient(
+      135deg,
+      var(--middle-ring-bg-start),
+      var(--middle-ring-bg-end)
+    );
     z-index: 2;
     transform: translateZ(0px);
-    box-shadow: inset 0 4px 8px rgba(0,0,0,0.1), inset 0 0 15px 5px rgba(255, 255, 255, 0.6), 0 4px 10px rgba(255, 152, 0, 0.3), 0 0 20px 5px rgba(255, 255, 255, 0.2);
+    box-shadow:
+      inset 0 4px 8px rgba(0, 0, 0, 0.1),
+      inset 0 0 15px 5px rgba(255, 255, 255, 0.6),
+      0 4px 10px rgba(255, 152, 0, 0.3),
+      0 0 20px 5px rgba(255, 255, 255, 0.2);
   }
 
   .inner-circle {
@@ -364,13 +418,20 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     width: calc(100% - 80px);
     height: calc(100% - 80px);
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--inner-circle-bg-start), var(--inner-circle-bg-end));
+    background: linear-gradient(
+      135deg,
+      var(--inner-circle-bg-start),
+      var(--inner-circle-bg-end)
+    );
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 3;
     transform: translateZ(30px);
-    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 87, 34, 0.5), 0 0 35px 10px rgba(255, 255, 255, 0.3);
+    box-shadow:
+      inset 0 6px 12px rgba(0, 0, 0, 0.4),
+      0 0 25px rgba(255, 87, 34, 0.5),
+      0 0 35px 10px rgba(255, 255, 255, 0.3);
   }
 
   .hero-main-image {
@@ -379,9 +440,12 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     object-fit: contain;
     z-index: 4;
     transform: scale(1.05) translateZ(50px);
-    filter: brightness(1.1) contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 16px rgba(255, 193, 7, 0.6)) drop-shadow(0 0 24px rgba(255, 87, 34, 0.4));
+    filter: brightness(1.1) contrast(1.1)
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+      drop-shadow(0 0 16px rgba(255, 193, 7, 0.6))
+      drop-shadow(0 0 24px rgba(255, 87, 34, 0.4));
   }
-  
+
   /*
   *
   * BACKGROUND BLOBS
@@ -451,7 +515,8 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
   }
 
   @keyframes organic-flow {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(0, 0) scale(1);
     }
     20% {
@@ -520,3 +585,6 @@ const { title, description, buttonText, buttonLink, imageSrc, imageAlt } = Astro
     }
   }
 </style>
+
+
+
