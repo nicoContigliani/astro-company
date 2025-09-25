@@ -241,18 +241,14 @@
 
 
 ---
-// Aquí no necesitas importar React ni sus hooks.
-// Tampoco necesitas `react-share` ya que Astro no usa React por defecto.
-// La lógica de compartir se maneja con enlaces `<a>` estándar.
-
+// Lógica de JavaScript en el frontmatter.
 const shareUrl = 'https://www.companiesall.com';
 const title = 'Soluciones Tecnológicas para tu Empresa | CompaniesAll';
 const platforms = [
-  { name: 'Facebook', icon: '/assets/icons/facebook.svg', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}` },
-  { name: 'Twitter', icon: '/assets/icons/twitter.svg', url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}` },
-  { name: 'LinkedIn', icon: '/assets/icons/linkedin.svg', url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(title)}` },
-  { name: 'WhatsApp', icon: '/assets/icons/whatsapp.svg', url: `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${encodeURIComponent(shareUrl)}` },
-  { name: 'Email', icon: '/assets/icons/email.svg', url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}` },
+  { name: 'Twitter', icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg', url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}` },
+  { name: 'LinkedIn', icon: 'https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg', url: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(title)}` },
+  { name: 'WhatsApp', icon: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', url: `https://api.whatsapp.com/send?text=${encodeURIComponent(title)}%20${encodeURIComponent(shareUrl)}` },
+  { name: 'Email', icon: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg', url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareUrl)}` },
 ];
 ---
 
@@ -292,7 +288,7 @@ const platforms = [
 </section>
 
 <style>
-  /* Variables CSS y estilos base idénticos a los del componente de React */
+  /* El CSS es idéntico al anterior, ya que el efecto de hover se maneja con la pseudoclase :hover. */
   .mac-contact-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
@@ -305,7 +301,9 @@ const platforms = [
     margin-bottom: 1%;
     padding-bottom: 5%;
   }
-  
+
+  /* ... (el resto del CSS es el mismo) ... */
+
   .mac-contact-section::before {
     content: '';
     position: absolute;
@@ -401,8 +399,8 @@ const platforms = [
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration: none; /* Asegura que el enlace no tenga subrayado */
-    color: inherit; /* Hereda el color del texto para evitar que sea azul */
+    text-decoration: none;
+    color: inherit;
   }
   
   .button-content {
