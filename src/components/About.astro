@@ -1,4 +1,3 @@
-
 ---
 // components/Nosotros.astro
 ---
@@ -13,42 +12,50 @@
 
   <div class="container">
     <div class="section-header" data-animate="fade-in-up">
-      <h2 class="section-title">Sobre Nosotros</h2>
+      <h2 class="section-title">◆ SOBRE NOSOTROS</h2>
       <p class="section-subtitle">Transformamos ideas en soluciones digitales de vanguardia.</p>
     </div>
 
     <div class="nosotros-content">
       <div class="nosotros-intro" data-animate="fade-in-up" data-delay="100">
-        <p>En LlakaScript, somos un equipo apasionado por la tecnología con la misión de impulsar el crecimiento de tu negocio. Con años de experiencia, ofrecemos soluciones de desarrollo y mantenimiento de sistemas a medida para optimizar tus procesos y ayudarte a alcanzar tus metas.</p>
+        <p><strong>LlakaScript</strong>, la línea que misió de la curplamtec ngro eín la eínstifroña el fuente dusntes porsëerpor, tueilipad aloea, su erquar te augíó queto lla motdeolus son de unde tare la digitals de la vanguarda.</p>
       </div>
 
-      <div class="vm-section">
-        <div class="vm-card" data-animate="fade-in-scale" data-delay="300">
-          <div class="vm-icon" aria-hidden="true">🚀</div>
+      <div class="mission-card-container" data-animate="fade-in-scale" data-delay="300">
+        <div class="card mission-card">
+          <div class="card-icon">
+            <div class="icon-rocket">🚀</div>
+          </div>
           <h3>Nuestra Misión y Visión</h3>
-          <p>Ser tu socio tecnológico de confianza, creando soluciones innovadoras que te mantengan a la vanguardia. Nos comprometemos a entregar calidad, eficiencia y transparencia en cada proyecto.</p>
+          <p>Siempre buscano el próxima gran idea para tu proyecto.</p>
         </div>
       </div>
 
       <div class="valores-section">
         <h3 class="valores-title" data-animate="fade-in-up" data-delay="500">Nuestros Valores</h3>
         <div class="valores-grid">
-          <div class="valor-item" data-animate="fade-in-scale" data-delay="600">
-            <div class="valor-icon" aria-hidden="true">💡</div>
+          <div class="card valor-card" data-animate="fade-in-scale" data-delay="600">
+            <div class="card-icon">
+              <div class="icon-lightbulb">💡</div>
+            </div>
             <h4>Innovación</h4>
-            <p>Siempre buscando la próxima gran idea para tu proyecto.</p>
+            <p>Siempre buscato el próxima gran idea para tu proyecto.</p>
           </div>
           
-          <div class="valor-item" data-animate="fade-in-scale" data-delay="700">
-            <div class="valor-icon" aria-hidden="true">🤝</div>
+          <div class="card valor-card" data-animate="fade-in-scale" data-delay="700">
+            <div class="card-icon">
+              <div class="icon-handshake">🤝</div>
+            </div>
             <h4>Colaboración</h4>
-            <p>Trabajamos de la mano contigo para asegurar el éxito.</p>
+            <p>Trabariamo de la mano contigo para escurar de éxcto.</p>
           </div>
           
-          <div class="valor-item" data-animate="fade-in-scale" data-delay="800">
-            <div class="valor-icon" aria-hidden="true">⚡</div>
+          <div class="card valor-card" data-animate="fade-in-scale" data-delay="800">
+            <div class="card-icon">
+              <div class="icon-lightning">⚡</div>
+            </div>
             <h4>Excelencia</h4>
-            <p>Nos dedicamos a la calidad y la mejora continua.</p>
+            <p>Nos dedicato da calidad y de mejora continua</p>
           </div>
         </div>
       </div>
@@ -57,7 +64,7 @@
 </section>
 
 <style>
-  /* Variables CSS optimizadas */
+  /* Variables CSS optimizadas y redefinidas localmente para un tono azul/celeste */
   :root {
     --gradient-bg: linear-gradient(to top, #24243e, #302b63, #0f0c29);
     --wave-color-1: rgba(255, 255, 255, 0.05);
@@ -67,13 +74,18 @@
 
     --text-primary: #ffffff;
     --text-secondary: #c6c6c6;
-    --text-tertiary: #666;
-    --accent-color: #007bff;
-    --card-bg: #ffffff;
-    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
-    --radius: 12px;
-    --transition: all 0.3s ease;
+    --text-tertiary: #ffffff;
+    
+    /* Variables de color específicas para esta sección (Nosotros) */
+    --nosotros-accent-color: #00bcd4; /* Un celeste brillante */
+    --nosotros-card-bg-transparent: rgba(0, 28, 212, 0.363) /* Fondo transparente con matiz celeste */
+    --nosotros-card-border-light: rgba(0, 188, 212, 0.3); /* Borde sutil celeste */
+    --nosotros-card-border-dark: rgba(0, 188, 212, 0.1);
+    --nosotros-card-glow: 0 0 20px rgba(0, 188, 212, 0.2), 0 0 40px rgba(0, 188, 212, 0.1); /* Sombra celeste */
+    --nosotros-card-inner-glow: inset 0 0 10px rgba(255, 255, 255, 0.05); /* Brillo interno blanco */
+
+    --radius: 20px;
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     --section-padding: clamp(2rem, 6vw, 4rem);
   }
 
@@ -101,11 +113,13 @@
   }
   
   .section-title {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    font-weight: 700;
-    color: var(--text-primary);
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    font-weight: 600;
+    color: var(--nosotros-accent-color); /* Usar la variable local */
     line-height: 1.2;
     margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--nosotros-accent-color); /* Usar la variable local */
   }
 
   .section-subtitle {
@@ -120,62 +134,181 @@
     text-align: center;
     max-width: min(800px, 90vw);
     margin: 0 auto clamp(3rem, 6vw, 4rem);
+    background: var(--nosotros-card-bg-transparent); /* Usar la variable local */
+    backdrop-filter: blur(30px) saturate(1.2);
+    border: 1px solid var(--nosotros-card-border-dark); /* Usar la variable local */
+    border-radius: var(--radius);
+    padding: clamp(2rem, 4vw, 3rem);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition-slow);
+    position: relative;
+    overflow: hidden;
   }
-  
+
   .nosotros-intro p {
-    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
-    line-height: 1.7;
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
+    line-height: 1.6;
     color: var(--text-secondary);
   }
 
-  /* Tarjeta Misión/Visón */
-  .vm-section {
-    max-width: min(600px, 90vw);
-    margin: 0 auto clamp(3rem, 6vw, 4rem);
+  .nosotros-intro strong {
+    color: var(--nosotros-accent-color); /* Usar la variable local */
   }
-  
-  .vm-card {
-    background: var(--card-bg);
-    padding: clamp(1.5rem, 4vw, 2.5rem);
+
+  /* Estilos base para todas las tarjetas */
+  .card {
+    background: var(--nosotros-card-bg-transparent); /* Usar la variable local */
+    backdrop-filter: blur(30px) saturate(1.2);
+    border: 1px solid transparent;
     border-radius: var(--radius);
-    box-shadow: var(--shadow-light);
+    padding: clamp(1.5rem, 3vw, 2rem);
     text-align: center;
-    transition: var(--transition);
-    will-change: transform, box-shadow;
+    box-shadow: var(--nosotros-card-glow); /* Usar la variable local */
+    transition: var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Efecto de borde más sutil */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius);
+    background: linear-gradient(45deg, var(--nosotros-card-border-light), transparent 30%, transparent 70%, var(--nosotros-card-border-light)); /* Usar la variable local */
+    background-size: 200% 200%;
+    animation: borderGlow 8s linear infinite;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    z-index: -1;
   }
   
-  .vm-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+  /* Brillo superior permanente */
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 188, 212, 0.08), transparent 50%); /* Usar el color celeste */
+    opacity: 1;
+    pointer-events: none;
   }
   
-  .vm-icon {
-    font-size: clamp(2.5rem, 6vw, 3rem);
+  /* Estilos de íconos */
+  .card-icon {
     margin-bottom: 1.5rem;
   }
   
-  .vm-card h3 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-    font-size: clamp(1.3rem, 3vw, 1.5rem);
+  .card-icon > div {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.3), var(--nosotros-card-inner-glow); /* Usar el color celeste */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
   }
   
-  .vm-card p {
+  .card-icon > div::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: conic-gradient(from 0deg, transparent 0%, var(--nosotros-accent-color) 10%, transparent 20%, transparent 80%, var(--nosotros-accent-color) 90%, transparent 100%); /* Usar la variable local */
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 8s linear infinite;
+    filter: blur(1.5px);
+    opacity: 0.6;
+  }
+  
+  .mission-card .card-icon > div {
+    background: linear-gradient(135deg, rgba(76, 151, 255, 0.7), rgba(0, 188, 212, 0.7)); /* Gradiente de azul a celeste */
+  }
+  
+  .valor-card .card-icon > div {
+    background: linear-gradient(135deg, rgba(0, 188, 212, 0.6), rgba(76, 151, 255, 0.6)); /* Gradiente de celeste a azul */
+  }
+
+  .icon-handshake::before {
+    animation-direction: reverse;
+  }
+
+  .icon-lightning::before {
+    animation-duration: 6s;
+    animation-direction: reverse;
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Contenido del texto */
+  .card h3, .card h4 {
     color: var(--text-tertiary);
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+  
+  .card h3 {
+    font-size: clamp(1.4rem, 3vw, 1.6rem);
+    margin-bottom: 1rem;
+  }
+  
+  .card h4 {
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+  }
+  
+  .card p {
+    color: var(--text-secondary);
     line-height: 1.6;
     font-size: clamp(1rem, 2vw, 1.1rem);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Layouts */
+  .mission-card-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: clamp(4rem, 8vw, 6rem);
   }
   
-  /* Sección de valores */
+  .mission-card {
+    max-width: 500px;
+    width: 100%;
+  }
+  
   .valores-section {
-    margin-top: clamp(3rem, 6vw, 4rem);
+    text-align: center;
   }
   
   .valores-title {
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: clamp(2rem, 4vw, 2.5rem);
-    color: var(--text-primary);
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    color: var(--nosotros-accent-color); /* Usar la variable local */
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    text-shadow: 0 0 10px var(--nosotros-accent-color); /* Usar la variable local */
   }
   
   .valores-grid {
@@ -183,40 +316,17 @@
     grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: clamp(1.5rem, 3vw, 2rem);
     justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
   }
   
-  .valor-item {
-    text-align: center;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-light);
-    transition: var(--transition);
-    will-change: transform, box-shadow;
+  .valor-card {
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  
-  .valor-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
-  }
-  
-  .valor-icon {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    margin-bottom: 1.2rem;
-  }
-  
-  .valor-item h4 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-  }
-  
-  .valor-item p {
-    color: var(--text-tertiary);
-    line-height: 1.6;
-    font-size: clamp(0.9rem, 2vw, 1rem);
-  }
-  
+
   /* Animación de ondas refinada y con más capas */
   .waves-container {
     position: absolute;
@@ -273,31 +383,17 @@
     }
   }
 
-  .wave.-one {
-    --wave-rotate: 0deg;
-    --wave-scale: 1;
-  }
-  .wave.-two {
-    --wave-rotate: 20deg;
-    --wave-scale: 1.05;
-  }
-  .wave.-three {
-    --wave-rotate: 40deg;
-    --wave-scale: 1.1;
-  }
-  .wave.-four {
-    --wave-rotate: 60deg;
-    --wave-scale: 1.15;
-  }
+  .wave.-one { --wave-rotate: 0deg; --wave-scale: 1; }
+  .wave.-two { --wave-rotate: 20deg; --wave-scale: 1.05; }
+  .wave.-three { --wave-rotate: 40deg; --wave-scale: 1.1; }
+  .wave.-four { --wave-rotate: 60deg; --wave-scale: 1.15; }
   
   /* Animaciones optimizadas con prefers-reduced-motion */
   @media (prefers-reduced-motion: no-preference) {
     [data-animate] {
       opacity: 0;
       transform: translateY(30px);
-      transition: 
-        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     [data-animate="fade-in-up"] {
@@ -319,48 +415,28 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .wave {
-      animation: none;
-      opacity: 0.05;
-      transform: none;
-    }
-    
-    .vm-card,
-    .valor-item {
-      transition: none;
-    }
+    .wave { animation: none; opacity: 0.05; transform: none; }
+    .card { transition: none; transform: none !important; }
+    .card::before, .card::after { animation: none; }
+    .card-icon > div::before { animation: none; }
+    .nosotros-intro { animation: none; transform: none !important; }
   }
 
   /* Media queries optimizadas */
   @media (max-width: 768px) {
-    .nosotros-section {
-      padding: clamp(1.5rem, 4vw, 2rem) 0;
-    }
-    
-    .valores-grid {
-      grid-template-columns: 1fr;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    
-    .valor-item {
-      padding: 1.5rem 1rem;
-    }
+    .nosotros-section { padding: clamp(1.5rem, 4vw, 2rem) 0; }
+    .valores-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .valor-card { min-height: 200px; }
   }
 
   @media (max-width: 480px) {
-    .container {
-      padding: 0 1rem;
-    }
-    
-    .vm-card,
-    .valor-item {
-      padding: 1.25rem;
-    }
-    
-    .waves-container {
-      display: none; /* Mejorar performance en móviles */
-    }
+    .container { padding: 0 1rem; }
+    .waves-container { display: none; }
+  }
+
+  /* Asegurar distribución en desktop */
+  @media (min-width: 900px) {
+    .valores-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 
@@ -380,10 +456,10 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (!prefersReducedMotion) {
-      observer = new IntersectionObserver((entries:any) => {
+      observer = new IntersectionObserver((entries) => {
         entries.forEach((entry:any) => {
           if (entry.isIntersecting) {
-            const delay:any = entry.target.dataset.delay || '0ms';
+            const delay = entry.target.dataset.delay || '0ms';
             entry.target.style.setProperty('--delay', `${delay}ms`);
             entry.target.classList.add('animated');
             observer.unobserve(entry.target);
