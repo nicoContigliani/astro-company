@@ -53,7 +53,7 @@ const services: Service[] = [
 
   <div class="container">
     <div class="section-header" data-animate="fade-in-up">
-      <h2 class="section-title">Nuestros Servicios</h2>
+      <h1 class="section-title">Nuestros Servicios</h1>
       <p class="section-subtitle">Soluciones tecnológicas integrales para potenciar tu negocio</p>
     </div>
 
@@ -88,8 +88,8 @@ const services: Service[] = [
 
     --text-primary: #ffffff;
     --text-secondary: #c6c6c6;
-    --text-tertiary: #ffffff;
-    --accent-color: #00d9ff;
+    --text-tertiary: #3CB8FF;
+    --accent-color: #3CB8FF;
     --card-bg-transparent: rgba(255, 255, 255, 0.02);
     --card-border-light: rgba(0, 217, 255, 0.3);
     --card-border-dark: rgba(0, 217, 255, 0.1);
@@ -99,6 +99,20 @@ const services: Service[] = [
     --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     --section-padding: clamp(2rem, 6vw, 4rem);
   }
+
+  .contact-title {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary);
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
 
   /* Reset y estilos base */
   .services-section {
@@ -249,8 +263,10 @@ const services: Service[] = [
     font-size: clamp(1.3rem, 3vw, 1.4rem);
     font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--text-tertiary);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    /* color: var(--text-tertiary); */
+    color: rgb(60, 184, 255);
+
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.087);
   }
 
   .service-card p {
@@ -395,6 +411,49 @@ const services: Service[] = [
       display: none;
     }
   }
+
+  .card-icon > div {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: rgba(77, 171, 247, 0.1);
+    border: 1px solid rgba(77, 171, 247, 0.3);
+    transition: var(--transition);
+  }
+
+  .card:hover .card-icon > div {
+    transform: scale(1.1);
+    background: rgba(77, 171, 247, 0.2);
+  }
+  
+  /* Contenido del texto - Mejor legibilidad */
+  .card h3, .card h4 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .card h3 {
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
+  }
+  
+  .card h4 {
+    font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+  }
+  
+  .card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
+    font-weight: 400;
+    margin: 0;
+  }
+
+
 </style>
 
 <script>

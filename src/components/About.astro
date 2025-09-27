@@ -12,7 +12,7 @@
 
   <div class="container">
     <div class="section-header" data-animate="fade-in-up">
-      <h2 class="section-title">◆ SOBRE NOSOTROS</h2>
+      <h2 class="section-title">SOBRE NOSOTROS</h2>
       <p class="section-subtitle">Transformamos ideas en soluciones digitales de vanguardia.</p>
     </div>
 
@@ -73,7 +73,7 @@
     --wave-color-4: rgba(255, 255, 255, 0.03);
 
     --text-primary: #ffffff;
-    --text-secondary: #c6c6c6;
+    --text-secondary: #ffffff;
     --text-tertiary: #ffffff;
     
     /* Variables de color específicas para esta sección (Nosotros) */
@@ -118,7 +118,7 @@
   .section-title {
     font-size: clamp(1.8rem, 4vw, 2.2rem);
     font-weight: 600;
-    color: var(--nosotros-accent-color); /* Usar la variable local */
+    color: var(--nosotros-accent-color); 
     line-height: 1.2;
     margin-bottom: 1rem;
     letter-spacing: 1px;
@@ -264,9 +264,9 @@
   
   /* Contenido del texto */
   .card h3, .card h4 {
-    color: var(--text-tertiary);
+    color: rgb(60, 184, 255);
     font-weight: 600;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(168, 168, 168, 0.008);
   }
   
   .card h3 {
@@ -277,7 +277,7 @@
   .card h4 {
     font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     margin-bottom: 1rem;
-    text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.15);
   }
   
   .card p {
@@ -440,6 +440,149 @@
   /* Asegurar distribución en desktop */
   @media (min-width: 900px) {
     .valores-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+
+  .section-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+  
+  .section-title {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: var(--nosotros-accent-color);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #4dabf7 0%, #74c0fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+  
+  /* Contenido principal - Mejor contraste */
+  .nosotros-intro {
+    text-align: center;
+    max-width: min(800px, 90vw);
+    margin: 0 auto clamp(3rem, 6vw, 4rem);
+    background: var(--nosotros-card-bg-transparent);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--nosotros-card-border-dark);
+    border-radius: var(--radius);
+    padding: clamp(2rem, 4vw, 3rem);
+    box-shadow: var(--nosotros-card-glow);
+    transition: var(--transition);
+  }
+
+  .nosotros-intro p {
+    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+    line-height: 1.7; /* Mayor interlineado para mejor lectura */
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .nosotros-intro strong {
+    color: var(--nosotros-accent-color);
+    font-weight: 600;
+  }
+
+  /* Estilos base para todas las tarjetas - Más legibles */
+  .card {
+    background: var(--nosotros-card-bg-transparent);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--nosotros-card-border-dark);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    box-shadow: var(--nosotros-card-glow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: var(--nosotros-card-border-light);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Efecto de borde sutil */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: 1px;
+    background: linear-gradient(45deg, var(--nosotros-card-border-light), transparent);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    opacity: 0;
+    transition: var(--transition);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Estilos de íconos */
+  .card-icon {
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-icon > div {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: rgba(77, 171, 247, 0.1);
+    border: 1px solid rgba(77, 171, 247, 0.3);
+    transition: var(--transition);
+  }
+
+  .card:hover .card-icon > div {
+    transform: scale(1.1);
+    background: rgba(77, 171, 247, 0.2);
+  }
+  
+  /* Contenido del texto - Mejor legibilidad */
+  .card h3, .card h4 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .card h3 {
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
+  }
+  
+  .card h4 {
+    font-size: clamp(1.2rem, 2.5vw, 1.3rem);
+  }
+  
+  .card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
+    font-weight: 400;
+    margin: 0;
   }
 </style>
 
